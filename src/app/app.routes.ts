@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LandingPage } from './components/landing-page/landing-page';
 import { Login } from './components/login/login';
 import { Cadastro } from './components/cadastro/cadastro';
+import { Dashboard } from './components/dashboard/dashboard';
 
 export const routes: Routes = [
     {
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path: "cadastro",
         component: Cadastro
+    },
+    {
+        path: "dashboard",
+        component: Dashboard
     }
 ];
