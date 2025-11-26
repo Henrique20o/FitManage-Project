@@ -1,0 +1,125 @@
+/* Tela inteira com fundo #131632 */
+.fm-login-page {
+  position: fixed;       
+  inset: 0;               
+  background-color: #131632;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box; 
+  z-index: 10;            
+}
+
+/* Card central */
+.fm-login-card {
+  background-color: #4c697e;
+  background-color: rgba(76, 105, 126, 0.98); /* levemente translúcido */
+  border-radius: 18px;
+  padding: 40px 56px 32px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+/* Logo */
+.fm-login-card__logo {
+  margin-bottom: 32px;
+}
+
+.fm-login-card__logo img {
+  height: 52px; /* ajusta se quiser maior/menor */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Form */
+.fm-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.fm-login-form__group {
+  text-align: left;
+}
+
+.fm-login-form__group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Inputs verdes arredondados */
+.fm-login-form__group input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: rgba(24, 203, 150, 0.6);
+  color: #131632;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fm-login-form__group input::placeholder {
+  color: rgba(19, 22, 50, 0.7);
+}
+
+/* Botão Entrar */
+.fm-login-form__button {
+  margin-top: 6px;
+  width: 60%;
+  align-self: center;
+  padding: 10px 0;
+  border-radius: 9999px;
+  border: none;
+  background-color: #18cb96;
+  color: #131632;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.fm-login-form__button:hover {
+  background-color: #16b488;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.fm-login-form__button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Esqueceu sua senha */
+.fm-login-card__forgot {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .fm-login-card {
+    padding: 32px 24px 24px;
+  }
+
+  .fm-login-form__button {
+    width: 100%;
+  }
+}
