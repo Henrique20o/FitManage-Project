@@ -1,1 +1,104 @@
-<p>cadastro works!</p>
+<div class="fm-register-page">
+  <div class="fm-register-card">
+    <!-- Logo -->
+    <div class="fm-register-card__logo">
+      <img src="logo_FitManage.png" alt="Logo FitManage" />
+    </div>
+
+    <form class="fm-register-form">
+      <!-- DADOS PESSOAIS -->
+      <h2 class="fm-register-section-title">Dados Pessoais</h2>
+
+      <div class="fm-register-form__grid">
+        <div class="fm-register-form__group">
+          <label for="nomeCompleto">Nome completo:</label>
+          <input id="nomeCompleto" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="cpf">CPF:</label>
+          <input id="cpf" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="telefone">Telefone de contato:</label>
+          <input id="telefone" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="email">E-mail:</label>
+          <input id="email" type="email" />
+        </div>
+      </div>
+
+      <!-- DADOS EMPRESARIAIS -->
+      <h2 class="fm-register-section-title">Dados Empresariais</h2>
+
+      <div class="fm-register-form__grid">
+        <div class="fm-register-form__group">
+          <label for="nomeAcademia">Nome da academia:</label>
+          <input id="nomeAcademia" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="cnpj">CNPJ:</label>
+          <input id="cnpj" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="endereco">Endereço:</label>
+          <input id="endereco" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="bairro">Bairro:</label>
+          <input id="bairro" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="uf">UF:</label>
+          <input id="uf" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="complemento">Complemento:</label>
+          <input id="complemento" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="cidade">Cidade:</label>
+          <input id="cidade" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="plano">Selecione um plano:</label>
+          <select id="plano">
+            <option value="">Selecione</option>
+            <option value="start">Start - Até 20 alunos - R$0,00</option>
+            <option value="pro">Pro - Até 150 alunos - R$59,90</option>
+            <option value="master">Master - +150 alunos - R$79,00</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- DADOS DE ACESSO -->
+      <h2 class="fm-register-section-title">Dados de acesso</h2>
+
+      <div class="fm-register-form__grid fm-register-form__grid--small">
+        <div class="fm-register-form__group">
+          <label for="login">Login:</label>
+          <input id="login" type="text" />
+        </div>
+
+        <div class="fm-register-form__group">
+          <label for="senhaCadastro">Senha:</label>
+          <input id="senhaCadastro" type="password" />
+        </div>
+      </div>
+
+      <button type="submit" class="fm-register-form__button">
+        Finalizar Cadastro
+      </button>
+    </form>
+  </div>
+</div>
