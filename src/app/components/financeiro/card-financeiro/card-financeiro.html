@@ -1,0 +1,27 @@
+<div class="fm-payment-card">
+  <div class="fm-payment-card__header">
+    <img
+      src="sidebar_financeiro.png"
+      alt="Pagamento"
+      class="fm-payment-card__icon"
+    />
+    <h3 class="fm-payment-card__title">{{ titulo }}</h3>
+  </div>
+
+  <div class="fm-payment-card__info">
+    <p><span>Aluno:</span> {{ aluno }}</p>
+    <p><span>Data do pagamento:</span> {{ dataPagamento }}</p>
+    <p><span>Valor:</span> {{ valor }}</p>
+    <p><span>Mês de Referência:</span> {{ mesReferencia }}</p>
+    <p><span>Ano de Referência:</span> {{ anoReferencia }}</p>
+  </div>
+
+  <div class="fm-payment-card__actions">
+    <button type="button" class="fm-payment-card__action-btn">
+      <img src="card_aluno_editar.png" alt="Editar" />
+    </button>
+    <button type="button" class="fm-payment-card__action-btn">
+      <img src="card_aluno_lixeira.png" alt="Excluir" />
+    </button>
+  </div>
+</div>

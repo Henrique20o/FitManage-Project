@@ -1,0 +1,95 @@
+<div class="fm-dashboard">
+  <app-sidebar></app-sidebar>
+
+  <main class="fm-dashboard__content">
+    <!-- Título -->
+    <h1 class="fm-report__title">Relatório de Alunos Inadimplentes</h1>
+
+    <!-- Filtros -->
+    <section class="fm-report__filters">
+      <div class="fm-report__filter-group">
+        <label for="mesRef">Mês de referência:</label>
+        <div class="fm-report__select-wrapper">
+          <select
+            id="mesRef"
+            [(ngModel)]="mesSelecionado"
+          >
+            <option
+              *ngFor="let mes of meses"
+              [ngValue]="mes.codigo"
+            >
+              {{ mes.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fm-report__filter-group">
+        <label for="anoRef">Ano de referência:</label>
+        <div class="fm-report__select-wrapper">
+          <select
+            id="anoRef"
+            [(ngModel)]="anoSelecionado"
+          >
+            <option *ngFor="let ano of anos" [ngValue]="ano">
+              {{ ano }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="fm-report__search-btn"
+        (click)="onBuscar()"
+      >
+        Buscar
+      </button>
+    </section>
+
+    <!-- Resumo -->
+    <section class="fm-report__summary">
+      <p>
+        <span>Mês/Ano selecionado:</span>
+        {{ mesAnoSelecionadoTexto }}
+      </p>
+
+      <p>
+        <span>Total de alunos inadimplentes:</span>
+        {{ totalInadimplentes }}
+      </p>
+
+      <p class="fm-report__summary-note">
+        Relatório somente de alunos SEM pagamento
+      </p>
+    </section>
+
+    <!-- Tabela -->
+    <section class="fm-report__table-wrapper">
+      <table class="fm-report__table">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Mês ref.</th>
+            <th>Ano ref.</th>
+            <th>Vencimento</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of inadimplentesFiltrados">
+            <td>{{ item.aluno }}</td>
+            <td>{{ item.mesRef }}</td>
+            <td>{{ item.anoRef }}</td>
+            <td>
+              <span class="fm-report__pill">
+                {{ item.vencimento }}
+              </span>
+            </td>
+            <td>{{ item.valor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>

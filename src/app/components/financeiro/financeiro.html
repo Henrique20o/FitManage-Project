@@ -1,0 +1,39 @@
+<div class="fm-dashboard">
+  <!-- sidebar reaproveitada -->
+  <app-sidebar></app-sidebar>
+
+  <main class="fm-dashboard__content">
+    <!-- Topo: botão + busca -->
+    <section class="fm-finance__top">
+      <button type="button" class="fm-finance__new-btn">
+        + Registrar um pagamento
+      </button>
+
+      <div class="fm-finance__search">
+        <input
+          type="text"
+          placeholder="Consultar um pagamento ..."
+        />
+        <button type="button" class="fm-finance__search-btn">
+          <img
+            src="alunos_lupa.png"
+            alt="Buscar"
+            class="fm-finance__search-icon"
+          />
+        </button>
+      </div>
+    </section>
+
+    <!-- Grid de cards de pagamentos -->
+    <section class="fm-finance__grid">
+      <app-card-financeiro
+        *ngFor="let pagamentos of pagamentos"
+        [aluno]="pagamentos.aluno"
+        [dataPagamento]="pagamentos.dataPagamento"
+        [valor]="pagamentos.valor"
+        [mesReferencia]="pagamentos.mesReferencia"
+        [anoReferencia]="pagamentos.anoReferencia"
+      ></app-card-financeiro>
+    </section>
+  </main>
+</div>

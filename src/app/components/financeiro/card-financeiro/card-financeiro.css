@@ -1,0 +1,61 @@
+.fm-payment-card {
+  background-color: #cfd8df;
+  border-radius: 24px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Cabeçalho: ícone + título */
+.fm-payment-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fm-payment-card__icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.fm-payment-card__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Infos */
+.fm-payment-card__info p {
+  margin: 3px 0;
+  font-size: 14px;
+}
+
+.fm-payment-card__info span {
+  font-weight: 700;
+}
+
+/* Ações */
+.fm-payment-card__actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.fm-payment-card__action-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fm-payment-card__action-btn img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
