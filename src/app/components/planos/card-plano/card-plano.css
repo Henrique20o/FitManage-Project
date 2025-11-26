@@ -1,0 +1,61 @@
+.fm-plan-card {
+  background-color: #cfd8df; /* cinza do layout */
+  border-radius: 24px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Cabeçalho: ícone + título */
+.fm-plan-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fm-plan-card__icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.fm-plan-card__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Descrição e valor */
+.fm-plan-card__info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.fm-plan-card__info span {
+  font-weight: 700;
+}
+
+/* Ações */
+.fm-plan-card__actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.fm-plan-card__action-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fm-plan-card__action-btn img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}

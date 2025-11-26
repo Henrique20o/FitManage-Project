@@ -1,1 +1,23 @@
-<p>planos works!</p>
+<div class="fm-dashboard">
+  <!-- sidebar que você já tem -->
+  <app-sidebar></app-sidebar>
+
+  <main class="fm-dashboard__content">
+    <!-- botão "+ Criar um plano" -->
+    <section class="fm-plans__top">
+      <button type="button" class="fm-plans__new-btn">
+        + Criar um plano
+      </button>
+    </section>
+
+    <!-- grid de cards de planos -->
+    <section class="fm-plans__grid">
+      <app-card-plano
+        *ngFor="let plano of planos"
+        [titulo]="plano.titulo"
+        [descricao]="plano.descricao"
+        [valor]="plano.valor"
+      ></app-card-plano>
+    </section>
+  </main>
+</div>

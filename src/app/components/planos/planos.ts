@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
+import { Sidebar } from "../sidebar/sidebar";
+import { CardPlano } from "./card-plano/card-plano";
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-planos',
-  imports: [],
+  imports: [Sidebar, CardPlano, NgFor],
   templateUrl: './planos.html',
   styleUrl: './planos.css',
 })
 export class Planos {
-
+  planos = [
+    {titulo:'Musculação 6x', descricao:'Musculação 6 vezes por semana.', valor:'R$129,90'},
+    {titulo:'Natação 3x', descricao:'Natação 3 vezes por semana!', valor:'R$300,00'},
+    {titulo:'CrossFit 2x', descricao:'Crossfit 2 vezes por semana.',valor:'R$109,90'},
+    {titulo:'Musculação 3x', descricao:'Musculação 3 vezes por semana.', valor:'R$79,90'}
+  ];
 }
