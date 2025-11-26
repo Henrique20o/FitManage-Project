@@ -1,0 +1,73 @@
+.fm-footer {
+  background-color: #131632;
+  color: #ffffff;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+/* Linha branca em cima do footer */
+.fm-footer__divider {
+  height: 1px;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
+
+/* Parte principal do footer (logo + links) */
+.fm-footer__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 40px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fm-footer__logo img {
+  height: 40px; /* ajusta se precisar */
+  display: block;
+}
+
+/* Navegação à direita */
+.fm-footer__nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.fm-footer__nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: opacity 0.15s ease;
+}
+
+.fm-footer__nav a:hover {
+  opacity: 0.8;
+}
+
+/* Copyright centralizado */
+.fm-footer__copy {
+  text-align: center;
+  padding: 8px 16px 20px;
+  font-size: 14px;
+  color: #e1e7ee;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .fm-footer__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 20px 8px;
+  }
+
+  .fm-footer__nav {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .fm-footer__copy {
+    font-size: 13px;
+  }
+}
