@@ -1,0 +1,64 @@
+.fm-dashboard {
+  position: fixed;          /* 👈 prende o layout na tela inteira */
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
+  display: flex;
+  background-color: #ffffff;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+/* área principal à direita do menu */
+.fm-dashboard__content {
+  flex: 1;
+  padding: 40px 60px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+  overflow-y: auto;         /* 👈 scroll só aqui */
+}
+
+/* título central */
+.fm-dashboard__title {
+  text-align: center;
+  font-size: 32px;
+  margin: 0 0 40px;
+}
+
+/* grid dos cards */
+.fm-dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+
+/* card verde */
+.fm-dashboard-card {
+  background-color: #18cb96;
+  border-radius: 24px;
+  padding: 24px 32px;
+  color: #131632;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.15);
+}
+
+.fm-dashboard-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.fm-dashboard-card__value {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .fm-dashboard__content {
+    padding: 24px 16px;
+  }
+
+  .fm-dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}

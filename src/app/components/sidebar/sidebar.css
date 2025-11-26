@@ -1,0 +1,101 @@
+.fm-sidebar {
+  width: 260px;
+  height: 100%;               /* 👈 ocupa 100% da altura do dashboard */
+  max-height: 100vh;          /* garante que não passa da tela */
+  background-color: #131632;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;     /* permite empurrar o footer com margin-top:auto */
+  padding: 24px 20px;
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+/* Cabeçalho (Visão Geral) */
+.fm-sidebar__header {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.fm-sidebar__section-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Navegação */
+.fm-sidebar__nav {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fm-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 0.9;
+  padding: 8px 10px;
+  border-radius: 9999px;
+  transition: background-color 0.15s ease, opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* Ícones do menu (imagem branca) */
+.fm-sidebar__icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1); /* deixa branco */
+}
+
+.fm-sidebar__link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* link ativo */
+.is-active {
+  background-color: rgba(255, 255, 255, 0.12);
+  opacity: 1;
+}
+
+/* Rodapé (Nome Academia + Logout) */
+.fm-sidebar__footer {
+  margin-top: auto;           /* 👈 joga o footer pro final da coluna */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fm-sidebar__academy-name {
+  opacity: 0.9;
+}
+
+/* Botão de logout */
+.fm-sidebar__logout {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ícone de logout (branco) */
+.fm-sidebar__logout-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
