@@ -1,0 +1,31 @@
+<div class="fm-student-card">
+  <div class="fm-student-card__header">
+    <div class="fm-student-card__avatar">
+      <!-- coloca aqui o ícone de aluno que você já tem -->
+      <img
+        src="card_aluno_aluno.png"
+        alt="Aluno"
+        class="fm-student-card__avatar-img"
+      />
+    </div>
+    <h3 class="fm-student-card__name">{{ nome }}</h3>
+  </div>
+
+  <div class="fm-student-card__info">
+    <p><span>Contato:</span> {{ contato }}</p>
+    <p><span>CPF:</span> {{ cpf }}</p>
+  </div>
+
+  <div class="fm-student-card__actions">
+    <!-- troque os src pelas imagens dos ícones de ação que você já tem -->
+    <button type="button" class="fm-student-card__action-btn">
+      <img src="card_aluno_detalhe.png" alt="Ver detalhes" />
+    </button>
+    <button type="button" class="fm-student-card__action-btn">
+      <img src="card_aluno_editar.png" alt="Editar" />
+    </button>
+    <button type="button" class="fm-student-card__action-btn">
+      <img src="card_aluno_lixeira.png" alt="Excluir" />
+    </button>
+  </div>
+</div>

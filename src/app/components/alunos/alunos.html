@@ -1,1 +1,38 @@
-<p>alunos works!</p>
+<div class="fm-dashboard">
+  <!-- menu lateral que você já tem -->
+  <app-sidebar></app-sidebar>
+
+  <main class="fm-dashboard__content">
+    <!-- Topo: botão + busca -->
+    <section class="fm-students__top">
+      <button type="button" class="fm-students__new-btn">
+        + Matricular Aluno
+      </button>
+
+      <div class="fm-students__search">
+        <input
+          type="text"
+          placeholder="Buscar por alunos..."
+        />
+        <button type="button" class="fm-students__search-btn">
+          <!-- coloca aqui o ícone de lupa que você já tem -->
+          <img
+            src="alunos_lupa.png"
+            alt="Buscar"
+            class="fm-students__search-icon"
+          />
+        </button>
+      </div>
+    </section>
+
+    <!-- Grid de cards de alunos -->
+    <section class="fm-students__grid">
+     <app-card-aluno 
+     *ngFor="let alunos of alunos"
+     [nome]="alunos.nome"
+     [contato]="alunos.contato"
+     [cpf]="alunos.cpf"
+     ></app-card-aluno>
+    </section>
+  </main>
+</div>
