@@ -1,104 +1,110 @@
 <div class="fm-register-page">
   <div class="fm-register-card">
+    
     <!-- Logo -->
     <div class="fm-register-card__logo">
       <img src="logo_FitManage.png" alt="Logo FitManage" />
     </div>
 
-    <form class="fm-register-form">
+    <form class="fm-register-form" (ngSubmit)="onRegister()">
+
       <!-- DADOS PESSOAIS -->
       <h2 class="fm-register-section-title">Dados Pessoais</h2>
-
       <div class="fm-register-form__grid">
+        
         <div class="fm-register-form__group">
           <label for="nomeCompleto">Nome completo:</label>
-          <input id="nomeCompleto" type="text" />
+          <input id="nomeCompleto" type="text" [(ngModel)]="cadastro.nomeCompleto" name="nomeCompleto" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="cpf">CPF:</label>
-          <input id="cpf" type="text" />
+          <input id="cpf" type="text" [(ngModel)]="cadastro.cpf" name="cpf" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="telefone">Telefone de contato:</label>
-          <input id="telefone" type="text" />
+          <input id="telefone" type="text" [(ngModel)]="cadastro.telefone" name="telefone" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="email">E-mail:</label>
-          <input id="email" type="email" />
+          <input id="email" type="email" [(ngModel)]="cadastro.email" name="email" />
         </div>
+
       </div>
 
       <!-- DADOS EMPRESARIAIS -->
       <h2 class="fm-register-section-title">Dados Empresariais</h2>
-
       <div class="fm-register-form__grid">
+
         <div class="fm-register-form__group">
-          <label for="nomeAcademia">Nome da academia:</label>
-          <input id="nomeAcademia" type="text" />
+          <label for="nome">Nome da academia:</label>
+          <input id="nome" type="text" [(ngModel)]="cadastro.nome" name="nome" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="cnpj">CNPJ:</label>
-          <input id="cnpj" type="text" />
+          <input id="cnpj" type="text" [(ngModel)]="cadastro.cnpj" name="cnpj" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="endereco">Endereço:</label>
-          <input id="endereco" type="text" />
+          <input id="endereco" type="text" [(ngModel)]="cadastro.endereco" name="endereco" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="bairro">Bairro:</label>
-          <input id="bairro" type="text" />
+          <input id="bairro" type="text" [(ngModel)]="cadastro.bairro" name="bairro" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="uf">UF:</label>
-          <input id="uf" type="text" />
+          <input id="uf" type="text" [(ngModel)]="cadastro.uf" name="uf" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="complemento">Complemento:</label>
-          <input id="complemento" type="text" />
+          <input id="complemento" type="text" [(ngModel)]="cadastro.complemento" name="complemento" />
         </div>
 
         <div class="fm-register-form__group">
           <label for="cidade">Cidade:</label>
-          <input id="cidade" type="text" />
+          <input id="cidade" type="text" [(ngModel)]="cadastro.cidade" name="cidade" />
         </div>
 
         <div class="fm-register-form__group">
-          <label for="plano">Selecione um plano:</label>
-          <select id="plano">
+          <label for="planoSelecionado">Selecione um plano:</label>
+          <select id="planoSelecionado" [(ngModel)]="cadastro.planoSelecionado" name="planoSelecionado">
             <option value="">Selecione</option>
-            <option value="start">Start - Até 20 alunos - R$0,00</option>
-            <option value="pro">Pro - Até 150 alunos - R$59,90</option>
-            <option value="master">Master - +150 alunos - R$79,00</option>
+            <option value="Start">Start - Até 20 alunos - R$0,00</option>
+            <option value="Pro">Pro - Até 150 alunos - R$59,90</option>
+            <option value="Master">Master - +150 alunos - R$79,00</option>
           </select>
         </div>
+
       </div>
 
       <!-- DADOS DE ACESSO -->
       <h2 class="fm-register-section-title">Dados de acesso</h2>
-
       <div class="fm-register-form__grid fm-register-form__grid--small">
+
         <div class="fm-register-form__group">
-          <label for="login">Login:</label>
-          <input id="login" type="text" />
+          <label for="usuario">Login:</label>
+          <input id="usuario" type="text" [(ngModel)]="cadastro.usuario" name="usuario" />
         </div>
 
         <div class="fm-register-form__group">
-          <label for="senhaCadastro">Senha:</label>
-          <input id="senhaCadastro" type="password" />
+          <label for="senha">Senha:</label>
+          <input id="senha" type="password" [(ngModel)]="cadastro.senha" name="senha" />
         </div>
+
       </div>
 
       <button type="submit" class="fm-register-form__button">
         Finalizar Cadastro
       </button>
+
     </form>
   </div>
 </div>

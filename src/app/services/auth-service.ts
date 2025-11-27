@@ -7,7 +7,7 @@ import { BehaviorSubject, map } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/usuarios';
+  private apiUrl = 'http://localhost:3000/academias';
 
   private usuarioLogadoSubject = new BehaviorSubject<any>(null);
   usuarioLogado$ = this.usuarioLogadoSubject.asObservable();
