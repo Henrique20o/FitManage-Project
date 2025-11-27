@@ -12,7 +12,7 @@ export const routes: Routes = [
     {path: "", component: LandingPage},
     {path: "login", component: Login},
     {path: "cadastro", component: Cadastro},
-    {path: "dashboard-inicio", component: Dashboard},
+    {path: "dashboard", component: Dashboard},
     {path: "alunos" , component: Alunos},
     {path: "planos", component: Planos},
     {path: "financeiro", component: Financeiro},
