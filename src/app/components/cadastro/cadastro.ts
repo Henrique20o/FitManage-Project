@@ -1,66 +1,57 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { UsuarioService } from '../../services/usuario-service';
+import { CadastroService } from '../../services/cadastro-service';
+import { CadastroApi } from '../../models/cadastro-api';
+import { NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
-  standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
-export class Cadastro {
 
-  academia: any = {
-    nomeCompleto: '',
+export class Cadastro {
+  successMessage = '';
+  errorMessage = '';
+  isSubmitting = false;
+  cadastro: CadastroApi = {
+    nomePessoal: '',
     cpf: '',
     telefone: '',
     email: '',
-    nome: '',
+    nomeAcademia: '',
     cnpj: '',
     endereco: '',
     bairro: '',
-    cidade: '',
     uf: '',
     complemento: '',
-    planoSelecionado: '',
-    usuario: '',
-    senha: ''
+    cidade: '',
+    plano: '',
+    login: '',
+    senha: '',
   };
 
-  erro: string = '';
+  constructor(private cadastroService: CadastroService, private router: Router) {}
 
-  constructor(
-    private router: Router,
-    private usuarioService: UsuarioService
-  ) {}
+  onRegister(form: NgForm) {
+    if (form.invalid) {
+      form.form.markAllAsTouched(); // força mostrar os erros
+      return;
+    }
 
-  onCadastrar(): void {
-    this.erro = '';
-    this.usuarioService.buscarPorUsuario(this.academia.usuario).subscribe({
-      next: (usuarios) => {
-        if (usuarios.length > 0) {
-          this.erro = 'Usuario já existe!';
-          alert(this.erro);
-          return;
-        }
-        
-          this.usuarioService.cadastrar(this.academia).subscribe({
-          next: () => {
-            alert('Cadastro realizado com sucesso!');
-            this.router.navigate(['/login']);
-          },
-          error: (err) => {
-            this.erro = 'Erro ao cadastrar';
-            alert(this.erro);
-          }
-        });
+    this.cadastroService.criarCadastro(this.cadastro).subscribe({
+      next: (res: CadastroApi) => {
+        console.log('Cadastro salvo com sucesso:', res);
+        alert('Cadastro realizado com sucesso!');
+        this.router.navigate(['/login']);
       },
-      error: (err) => {
-        this.erro = 'Erro ao buscar usuario';
-        alert(this.erro);
-      }
+      error: (erro: any) => {
+        console.error('Erro ao salvar cadastro:', erro);
+        alert('Erro ao salvar cadastro.');
+      },
     });
   }
 }

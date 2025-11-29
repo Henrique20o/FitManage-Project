@@ -119,6 +119,16 @@
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
 }
 
+.fm-error small {
+  color: #ff6b6b;
+  font-size: 0.75rem;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #ff6b6b;
+}
+
 /* Responsivo */
 @media (max-width: 900px) {
   .fm-register-card {

@@ -6,14 +6,14 @@
     </div>
 
     <!-- Formulário -->
-    <form class="fm-login-form" (ngSubmit)="onLogin()">
+    <form class="fm-login-form">
       <div class="fm-login-form__group">
         <label for="login">Login</label>
         <input
           id="login"
           type="text"
           placeholder="Digite seu login"
-          [(ngModel)]="usuario"
+          
           name="usuario"
         />
       </div>
@@ -24,7 +24,7 @@
           id="senha"
           type="password"
           placeholder="Digite sua senha"
-          [(ngModel)]="senha"
+          
           name="senha"
         />
       </div>
