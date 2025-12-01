@@ -19,15 +19,8 @@
     }
   ],
   "planos": [
-    {
-      "id": "1",
-      "nome": "Mensal",
-      "preco": 120
-    },
-    {
-      "id": "2",
-      "nome": "Trimestral",
-      "preco": 300
-    }
+  ],
+  "alunos": [
+
   ]
 }

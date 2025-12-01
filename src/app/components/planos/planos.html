@@ -5,7 +5,11 @@
   <main class="fm-dashboard__content">
     <!-- botão "+ Criar um plano" -->
     <section class="fm-plans__top">
-      <button type="button" class="fm-plans__new-btn">
+      <button
+        type="button"
+        class="fm-plans__new-btn"
+        (click)="abrirModalPlano()"
+      >
         + Criar um plano
       </button>
     </section>
@@ -20,4 +24,75 @@
       ></app-card-plano>
     </section>
   </main>
+
+  <!-- MODAL: Criar novo plano -->
+  <div class="fm-modal-backdrop" *ngIf="modalPlanoAberto">
+    <div class="fm-modal">
+      <button
+        type="button"
+        class="fm-modal__close"
+        (click)="fecharModalPlano()"
+      >
+        ×
+      </button>
+
+      <!-- título centralizado -->
+      <h2 class="fm-register-section-title">Criar novo plano</h2>
+
+      <form
+        class="fm-register-form"
+        (ngSubmit)="salvarPlano()"
+        #formPlano="ngForm"
+      >
+        <!-- Nome do plano -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group fm-register-form__group--full">
+            <label for="nomePlano">Nome do plano*</label>
+            <input
+              id="nomePlano"
+              name="nomePlano"
+              type="text"
+              required
+              [(ngModel)]="novoPlano.titulo"
+            />
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group fm-register-form__group--full">
+            <label for="descricaoPlano">Descrição</label>
+            <textarea
+              id="descricaoPlano"
+              name="descricaoPlano"
+              rows="3"
+              [(ngModel)]="novoPlano.descricao"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Valor -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group fm-register-form__group--full">
+            <label for="valorPlano">Valor</label>
+            <input
+              id="valorPlano"
+              name="valorPlano"
+              type="text"
+              [(ngModel)]="novoPlano.valor"
+            />
+          </div>
+        </div>
+
+        <!-- Botão principal: SALVAR -->
+        <button
+          type="submit"
+          class="fm-register-form__button"
+          [disabled]="formPlano.invalid"
+        >
+          Salvar
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,21 +1,21 @@
 <div class="fm-dashboard">
-  <!-- menu lateral que você já tem -->
+  <!-- menu lateral -->
   <app-sidebar></app-sidebar>
 
   <main class="fm-dashboard__content">
     <!-- Topo: botão + busca -->
     <section class="fm-students__top">
-      <button type="button" class="fm-students__new-btn">
+      <button
+        type="button"
+        class="fm-students__new-btn"
+        (click)="abrirModalMatricula()"
+      >
         + Matricular Aluno
       </button>
 
       <div class="fm-students__search">
-        <input
-          type="text"
-          placeholder="Buscar por alunos..."
-        />
+        <input type="text" placeholder="Buscar por alunos..." />
         <button type="button" class="fm-students__search-btn">
-          <!-- coloca aqui o ícone de lupa que você já tem -->
           <img
             src="alunos_lupa.png"
             alt="Buscar"
@@ -27,12 +27,107 @@
 
     <!-- Grid de cards de alunos -->
     <section class="fm-students__grid">
-     <app-card-aluno 
-     *ngFor="let alunos of alunos"
-     [nome]="alunos.nome"
-     [contato]="alunos.contato"
-     [cpf]="alunos.cpf"
-     ></app-card-aluno>
+      <app-card-aluno
+        *ngFor="let aluno of alunos"
+        [nome]="aluno.nome"
+        [contato]="aluno.contato"
+        [cpf]="aluno.cpf"
+      ></app-card-aluno>
     </section>
   </main>
+
+  <!-- MODAL: Matricular novo aluno (página continua branca ao fundo) -->
+  <div class="fm-modal-backdrop" *ngIf="modalMatriculaAberto">
+    <div class="fm-modal">
+      <button
+        type="button"
+        class="fm-modal__close"
+        (click)="fecharModalMatricula()"
+      >
+        ×
+      </button>
+
+      <!-- título centralizado -->
+      <h2 class="fm-register-section-title">Matricular novo aluno</h2>
+
+      <form
+        class="fm-register-form"
+        (ngSubmit)="salvarMatricula()"
+        #formMatricula="ngForm"
+      >
+        <!-- Nome + Telefone -->
+        <div class="fm-register-form__grid">
+          <div class="fm-register-form__group">
+            <label for="nome">Nome*</label>
+            <input
+              id="nome"
+              name="nome"
+              type="text"
+              required
+              [(ngModel)]="novoAluno.nome"
+            />
+          </div>
+
+          <div class="fm-register-form__group">
+            <label for="telefone">Telefone</label>
+            <input
+              id="telefone"
+              name="telefone"
+              type="text"
+              [(ngModel)]="novoAluno.telefone"
+            />
+          </div>
+        </div>
+
+        <!-- CPF + Endereço -->
+        <div class="fm-register-form__grid">
+          <div class="fm-register-form__group">
+            <label for="cpf">CPF</label>
+            <input
+              id="cpf"
+              name="cpf"
+              type="text"
+              [(ngModel)]="novoAluno.cpf"
+            />
+          </div>
+
+          <div class="fm-register-form__group">
+            <label for="endereco">Endereço</label>
+            <input
+              id="endereco"
+              name="endereco"
+              type="text"
+              [(ngModel)]="novoAluno.endereco"
+            />
+          </div>
+        </div>
+
+        <!-- Plano ocupando a linha toda -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group fm-register-form__group--full">
+            <label for="plano">Plano</label>
+            <select
+              id="plano"
+              name="plano"
+              [(ngModel)]="novoAluno.plano"
+            >
+              <option value="" disabled selected>Selecione um plano</option>
+              <option *ngFor="let p of planosDisponiveis" [value]="p">
+                {{ p }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Botão principal: SALVAR -->
+        <button
+          type="submit"
+          class="fm-register-form__button"
+          [disabled]="formMatricula.invalid"
+        >
+          Salvar
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

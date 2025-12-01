@@ -1,4 +1,5 @@
-/* Layout geral (mesmo padrão do dashboard de visão geral) */
+/* ===== LAYOUT GERAL DO DASHBOARD (continua branco) ===== */
+
 .fm-dashboard {
   position: fixed;
   inset: 0;
@@ -17,7 +18,8 @@
   overflow-y: auto;
 }
 
-/* Topo: botão Matricular + busca */
+/* ===== TOPO: BOTÃO + BUSCA ===== */
+
 .fm-students__top {
   display: flex;
   align-items: center;
@@ -85,7 +87,8 @@
   object-fit: contain;
 }
 
-/* Grid dos cards de alunos */
+/* ===== GRID DE CARDS DE ALUNOS ===== */
+
 .fm-students__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -120,5 +123,163 @@
 
   .fm-students__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== MODAL MATRÍCULA – overlay com card central ===== */
+
+.fm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* fundo escuro por cima da página branca */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Card do modal (usa as cores do padrão que você mandou) */
+/* Card do modal agora branco com texto escuro */
+.fm-modal {
+  position: relative;
+  background-color: #ffffff;              /* fundo branco */
+  border-radius: 18px;
+  padding: 40px 60px 32px;
+  max-width: 900px;
+  width: 100%;
+  color: #131632;                         /* texto escuro */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* botão X em preto */
+.fm-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #131632;                         /* preto */
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* labels em preto (só pra garantir) */
+.fm-register-form__group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #131632;
+}
+
+/* título preto também */
+.fm-register-section-title {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 22px;
+  font-weight: 700;
+  color: #131632;
+}
+
+/* ===== PADRÃO DOS INPUTS ARREDONDADOS VERDES ===== */
+
+.fm-register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 32px;
+  margin-bottom: 28px;
+}
+
+/* para a última parte (plano) com menos espaço */
+.fm-register-form__grid--small {
+  margin-bottom: 24px;
+}
+
+/* faz o campo ocupar toda a linha */
+.fm-register-form__group--full {
+  grid-column: 1 / -1;
+}
+
+/* Grupo de label + input */
+.fm-register-form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.fm-register-form__group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Inputs e selects verdes arredondados */
+.fm-register-form__group input,
+.fm-register-form__group select {
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: rgba(24, 203, 150, 0.6);
+  color: #0b1024;
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.fm-register-form__group input:focus,
+.fm-register-form__group select:focus {
+  background-color: rgba(24, 203, 150, 0.95);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.fm-register-form__group select {
+  cursor: pointer;
+}
+
+/* Botão principal: SALVAR (padrão do cadastro) */
+.fm-register-form__button {
+  display: block;
+  margin: 8px auto 0;
+  padding: 12px 40px;
+  background-color: #18cb96;
+  border-radius: 9999px;
+  border: none;
+  color: #131632;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.fm-register-form__button:hover {
+  background-color: #16b488;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+.fm-register-form__button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* Responsivo do modal */
+@media (max-width: 900px) {
+  .fm-modal {
+    padding: 32px 20px 24px;
+    margin: 0 12px;
+  }
+
+  .fm-register-form__grid,
+  .fm-register-form__grid--small {
+    grid-template-columns: 1fr;
+  }
+
+  .fm-register-form__button {
+    width: 100%;
   }
 }
