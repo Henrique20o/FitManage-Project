@@ -1,21 +1,19 @@
 <div class="fm-login-page">
   <div class="fm-login-card">
-    <!-- Logo -->
     <div class="fm-login-card__logo">
       <img src="logo_FitManage.png" alt="Logo FitManage" />
     </div>
 
-    <!-- Formulário -->
-    <form class="fm-login-form">
+    <form class="fm-login-form" (ngSubmit)="onSubmit()">
       <div class="fm-login-form__group">
         <label for="login">Login</label>
         <input
           id="login"
           type="text"
           placeholder="Digite seu login"
-          
           name="usuario"
-        />
+          required
+          [(ngModel)]="credentials.login" />
       </div>
 
       <div class="fm-login-form__group">
@@ -24,9 +22,9 @@
           id="senha"
           type="password"
           placeholder="Digite sua senha"
-          
           name="senha"
-        />
+          required
+          [(ngModel)]="credentials.senha" />
       </div>
 
       <button type="submit" class="fm-login-form__button">
