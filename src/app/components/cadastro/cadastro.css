@@ -13,26 +13,31 @@
 /* Card central */
 .fm-register-card {
   background-color: #4c697e;
-  background-color: rgba(76, 105, 126, 0.98);
-  border-radius: 18px;
-  padding: 40px 60px 32px;
-  max-width: 900px;
+  border-radius: 24px;
+  padding: 40px 48px 32px;
+  max-width: 960px;
   width: 100%;
-  color: #ffffff;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
 }
 
 /* Logo */
 .fm-register-card__logo {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
 }
 
 .fm-register-card__logo img {
-  height: 52px;
+  max-width: 180px;
+  height: auto;
 }
 
-/* Títulos das seções */
+/* Form */
+.fm-register-form {
+  color: #f5f7fb;
+}
+
+/* Título das seções */
 .fm-register-section-title {
   text-align: center;
   font-size: 18px;
@@ -67,23 +72,25 @@
 /* Inputs e selects verdes arredondados */
 .fm-register-form__group input,
 .fm-register-form__group select {
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   padding: 12px 18px;
   border-radius: 9999px;
   background-color: rgba(24, 203, 150, 0.6);
-  color: #131632;
+  color: #0b1024;
   font-size: 14px;
   font-weight: 500;
   appearance: none;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-  color: #0b1024;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
 .fm-register-form__group input:focus,
 .fm-register-form__group select:focus {
   background-color: rgba(24, 203, 150, 0.95);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25); 
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
@@ -104,19 +111,26 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
     background-color 0.15s ease;
 }
 
-.fm-register-form__button:hover {
-  background-color: #16b488;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+.fm-register-form__button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  background-color: #1ce1a5;
 }
 
-.fm-register-form__button:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+.fm-register-form__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Erros de validação */
+.fm-error {
+  margin-top: 4px;
 }
 
 .fm-error small {
@@ -124,6 +138,7 @@
   font-size: 0.75rem;
 }
 
+/* Borda vermelha para campos inválidos tocados */
 input.ng-invalid.ng-touched,
 select.ng-invalid.ng-touched {
   border-color: #ff6b6b;
@@ -135,9 +150,16 @@ select.ng-invalid.ng-touched {
     padding: 32px 20px 24px;
   }
 
-  .fm-register-form__grid,
-  .fm-register-form__grid--small {
+  .fm-register-form__grid {
     grid-template-columns: 1fr;
+    gap: 14px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .fm-register-card {
+    padding: 28px 16px 20px;
+    border-radius: 18px;
   }
 
   .fm-register-form__button {

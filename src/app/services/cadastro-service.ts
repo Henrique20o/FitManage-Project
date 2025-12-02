@@ -6,9 +6,8 @@ import { CadastroApi } from '../models/cadastro-api';
 @Injectable({
   providedIn: 'root',
 })
-
 export class CadastroService {
-  private apiUrl = 'http://localhost:3000/academia'; 
+  private apiUrl = 'http://localhost:3000/academia';
 
   constructor(private http: HttpClient) {}
 

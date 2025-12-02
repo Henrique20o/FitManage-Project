@@ -1,22 +1,19 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { CadastroService } from '../../services/cadastro-service';
 import { CadastroApi } from '../../models/cadastro-api';
-import { NgForm } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
-
 export class Cadastro {
-  successMessage = '';
-  errorMessage = '';
-  isSubmitting = false;
+  // objeto que o formulário vai preencher
   cadastro: CadastroApi = {
     nomePessoal: '',
     cpf: '',
@@ -34,23 +31,34 @@ export class Cadastro {
     senha: '',
   };
 
-  constructor(private cadastroService: CadastroService, private router: Router) {}
+  isSubmitting = false;
+
+  constructor(
+    private cadastroService: CadastroService,
+    private router: Router
+  ) {}
 
   onRegister(form: NgForm) {
+    // se tiver qualquer campo inválido, não deixa enviar
     if (form.invalid) {
-      form.form.markAllAsTouched(); // força mostrar os erros
+      // força todos os campos a ficarem "touched" pra aparecer as mensagens
+      form.form.markAllAsTouched();
       return;
     }
+
+    this.isSubmitting = true;
 
     this.cadastroService.criarCadastro(this.cadastro).subscribe({
       next: (res: CadastroApi) => {
         console.log('Cadastro salvo com sucesso:', res);
         alert('Cadastro realizado com sucesso!');
+        this.isSubmitting = false;
         this.router.navigate(['/login']);
       },
       error: (erro: any) => {
         console.error('Erro ao salvar cadastro:', erro);
         alert('Erro ao salvar cadastro.');
+        this.isSubmitting = false;
       },
     });
   }

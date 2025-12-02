@@ -1,26 +1,32 @@
 {
   "academia": [
     {
-      "id": "02e9",
-      "nomePessoal": "Lucas Ferreira Souza",
-      "cpf": "13401704699",
-      "telefone": "31997190963",
-      "email": "lucaszfzs@gmail.com",
-      "nomeAcademia": "Academia FitMais ",
-      "cnpj": "27787170000114",
-      "endereco": "RUA F",
-      "bairro": "Progresso",
+      "id": "7445",
+      "nomePessoal": "João Marcos",
+      "cpf": "13478649112",
+      "telefone": "31999978345",
+      "email": "joao.marcos@email.com",
+      "nomeAcademia": "Fit+",
+      "cnpj": "34567765000134",
+      "endereco": "Rua Oliveira",
+      "bairro": "Cruzeiro",
       "uf": "MG",
-      "complemento": "",
-      "cidade": "Brumadinho",
+      "complemento": "Rua princiapl",
+      "cidade": "Belo Horizonte",
       "plano": "Pro",
-      "login": "teste",
-      "senha": "tteste"
+      "login": "userfit+",
+      "senha": "userfit+"
     }
   ],
-  "planos": [
-  ],
+  "planos": [],
   "alunos": [
-
+    {
+      "idAcademia": "7445",
+      "nomeAluno": "Lucas Ferreira",
+      "cpf": "13478649112",
+      "endereço": "Rua teste, 61, Teste",
+      "telefone": "31989763456",
+      "plano": ""
+    }
   ]
 }

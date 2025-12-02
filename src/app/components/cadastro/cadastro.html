@@ -1,17 +1,21 @@
 <div class="fm-register-page">
   <div class="fm-register-card">
-    
     <!-- Logo -->
     <div class="fm-register-card__logo">
       <img src="logo_FitManage.png" alt="Logo FitManage" />
     </div>
 
-    <form class="fm-register-form" (ngSubmit)="onRegister(formCadastro)" #formCadastro="ngForm">
-
+    <form
+      class="fm-register-form"
+      (ngSubmit)="onRegister(formCadastro)"
+      #formCadastro="ngForm"
+      novalidate
+    >
       <!-- DADOS PESSOAIS -->
       <h2 class="fm-register-section-title">Dados Pessoais</h2>
+
       <div class="fm-register-form__grid">
-        
+        <!-- Nome completo -->
         <div class="fm-register-form__group">
           <label for="nomeCompleto">Nome completo:</label>
           <input
@@ -23,8 +27,17 @@
             [(ngModel)]="cadastro.nomePessoal"
             #nomeCompleto="ngModel"
           />
+          <div class="fm-error" *ngIf="nomeCompleto.invalid && nomeCompleto.touched">
+            <small *ngIf="nomeCompleto.errors?.['required']">
+              O nome é obrigatório.
+            </small>
+            <small *ngIf="nomeCompleto.errors?.['minlength']">
+              O nome deve ter pelo menos 3 caracteres.
+            </small>
+          </div>
         </div>
 
+        <!-- CPF -->
         <div class="fm-register-form__group">
           <label for="cpf">CPF:</label>
           <input
@@ -36,84 +49,193 @@
             [(ngModel)]="cadastro.cpf"
             #cpf="ngModel"
           />
+          <div class="fm-error" *ngIf="cpf.invalid && cpf.touched">
+            <small *ngIf="cpf.errors?.['required']">
+              O CPF é obrigatório.
+            </small>
+            <small *ngIf="cpf.errors?.['pattern']">
+              Informe um CPF com 11 dígitos numéricos.
+            </small>
+          </div>
         </div>
 
+        <!-- Telefone -->
         <div class="fm-register-form__group">
-          <label for="telefone">Telefone de contato:</label>
+          <label for="telefone">Telefone:</label>
           <input
             id="telefone"
-            type="text"
+            type="tel"
             name="telefone"
+            required
+            minlength="10"
             [(ngModel)]="cadastro.telefone"
+            #telefone="ngModel"
           />
+          <div class="fm-error" *ngIf="telefone.invalid && telefone.touched">
+            <small *ngIf="telefone.errors?.['required']">
+              O telefone é obrigatório.
+            </small>
+            <small *ngIf="telefone.errors?.['minlength']">
+              Informe um telefone válido.
+            </small>
+          </div>
         </div>
 
+        <!-- Email -->
         <div class="fm-register-form__group">
           <label for="email">E-mail:</label>
           <input
             id="email"
             type="email"
             name="email"
+            required
             [(ngModel)]="cadastro.email"
+            #email="ngModel"
           />
+          <div class="fm-error" *ngIf="email.invalid && email.touched">
+            <small *ngIf="email.errors?.['required']">
+              O e-mail é obrigatório.
+            </small>
+            <small *ngIf="email.errors?.['email']">
+              Informe um e-mail válido.
+            </small>
+          </div>
         </div>
-
       </div>
 
-      <!-- DADOS EMPRESARIAIS -->
-      <h2 class="fm-register-section-title">Dados Empresariais</h2>
-      <div class="fm-register-form__grid">
+      <!-- DADOS DA ACADEMIA -->
+      <h2 class="fm-register-section-title">Dados da Academia</h2>
 
+      <div class="fm-register-form__grid">
+        <!-- Nome da academia -->
         <div class="fm-register-form__group">
           <label for="nomeAcademia">Nome da academia:</label>
           <input
             id="nomeAcademia"
             type="text"
             name="nomeAcademia"
+            required
             [(ngModel)]="cadastro.nomeAcademia"
+            #nomeAcademia="ngModel"
           />
+          <div class="fm-error" *ngIf="nomeAcademia.invalid && nomeAcademia.touched">
+            <small>O nome da academia é obrigatório.</small>
+          </div>
         </div>
 
+        <!-- CNPJ -->
         <div class="fm-register-form__group">
           <label for="cnpj">CNPJ:</label>
           <input
             id="cnpj"
             type="text"
             name="cnpj"
+            required
+            pattern="^[0-9]{14}$"
             [(ngModel)]="cadastro.cnpj"
+            #cnpj="ngModel"
           />
+          <div class="fm-error" *ngIf="cnpj.invalid && cnpj.touched">
+            <small *ngIf="cnpj.errors?.['required']">O CNPJ é obrigatório.</small>
+            <small *ngIf="cnpj.errors?.['pattern']">
+              Informe um CNPJ com 14 dígitos numéricos.
+            </small>
+          </div>
         </div>
 
+        <!-- Endereço -->
         <div class="fm-register-form__group">
           <label for="endereco">Endereço:</label>
           <input
             id="endereco"
             type="text"
             name="endereco"
+            required
             [(ngModel)]="cadastro.endereco"
+            #endereco="ngModel"
           />
+          <div class="fm-error" *ngIf="endereco.invalid && endereco.touched">
+            <small>O endereço é obrigatório.</small>
+          </div>
         </div>
 
+        <!-- Bairro -->
         <div class="fm-register-form__group">
           <label for="bairro">Bairro:</label>
           <input
             id="bairro"
             type="text"
             name="bairro"
+            required
             [(ngModel)]="cadastro.bairro"
+            #bairro="ngModel"
           />
+          <div class="fm-error" *ngIf="bairro.invalid && bairro.touched">
+            <small>O bairro é obrigatório.</small>
+          </div>
         </div>
 
+        <!-- Cidade -->
+        <div class="fm-register-form__group">
+          <label for="cidade">Cidade:</label>
+          <input
+            id="cidade"
+            type="text"
+            name="cidade"
+            required
+            [(ngModel)]="cadastro.cidade"
+            #cidade="ngModel"
+          />
+          <div class="fm-error" *ngIf="cidade.invalid && cidade.touched">
+            <small>A cidade é obrigatória.</small>
+          </div>
+        </div>
+
+        <!-- UF -->
         <div class="fm-register-form__group">
           <label for="uf">UF:</label>
-          <input
+          <select
             id="uf"
-            type="text"
             name="uf"
+            required
             [(ngModel)]="cadastro.uf"
-          />
+            #uf="ngModel"
+          >
+            <option value="">Selecione</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+          </select>
+          <div class="fm-error" *ngIf="uf.invalid && uf.touched">
+            <small>A UF é obrigatória.</small>
+          </div>
         </div>
 
+        <!-- Complemento (opcional) -->
         <div class="fm-register-form__group">
           <label for="complemento">Complemento:</label>
           <input
@@ -121,65 +243,87 @@
             type="text"
             name="complemento"
             [(ngModel)]="cadastro.complemento"
+            #complemento="ngModel"
           />
         </div>
 
+        <!-- Plano -->
         <div class="fm-register-form__group">
-          <label for="cidade">Cidade:</label>
-          <input
-            id="cidade"
-            type="text"
-            name="cidade"
-            [(ngModel)]="cadastro.cidade"
-          />
-        </div>
-
-        <div class="fm-register-form__group">
-          <label for="planoSelecionado">Selecione um plano:</label>
+          <label for="plano">Plano:</label>
           <select
-            id="planoSelecionado"
-            name="planoSelecionado"
+            id="plano"
+            name="plano"
+            required
             [(ngModel)]="cadastro.plano"
+            #plano="ngModel"
           >
             <option value="">Selecione</option>
-            <option value="Start">Start - Até 20 alunos - R$0,00</option>
-            <option value="Pro">Pro - Até 150 alunos - R$59,90</option>
+            <option value="Start">Start - Até 20 alunos - R$0,00</option> 
+            <option value="Pro">Pro - Até 150 alunos - R$59,90</option> 
             <option value="Master">Master - +150 alunos - R$79,00</option>
           </select>
+          <div class="fm-error" *ngIf="plano.invalid && plano.touched">
+            <small>O plano é obrigatório.</small>
+          </div>
         </div>
-
       </div>
 
       <!-- DADOS DE ACESSO -->
-      <h2 class="fm-register-section-title">Dados de acesso</h2>
-      <div class="fm-register-form__grid fm-register-form__grid--small">
+      <h2 class="fm-register-section-title">Dados de Acesso</h2>
 
+      <div class="fm-register-form__grid fm-register-form__grid--small">
+        <!-- Login -->
         <div class="fm-register-form__group">
-          <label for="usuario">Login:</label>
+          <label for="login">Login:</label>
           <input
-            id="usuario"
+            id="login"
             type="text"
-            name="usuario"
+            name="login"
+            required
+            minlength="3"
             [(ngModel)]="cadastro.login"
+            #login="ngModel"
           />
+          <div class="fm-error" *ngIf="login.invalid && login.touched">
+            <small *ngIf="login.errors?.['required']">
+              O login é obrigatório.
+            </small>
+            <small *ngIf="login.errors?.['minlength']">
+              O login deve ter pelo menos 3 caracteres.
+            </small>
+          </div>
         </div>
 
+        <!-- Senha -->
         <div class="fm-register-form__group">
           <label for="senha">Senha:</label>
           <input
             id="senha"
             type="password"
             name="senha"
+            required
+            minlength="6"
             [(ngModel)]="cadastro.senha"
+            #senha="ngModel"
           />
+          <div class="fm-error" *ngIf="senha.invalid && senha.touched">
+            <small *ngIf="senha.errors?.['required']">
+              A senha é obrigatória.
+            </small>
+            <small *ngIf="senha.errors?.['minlength']">
+              A senha deve ter pelo menos 6 caracteres.
+            </small>
+          </div>
         </div>
-
       </div>
 
-      <button type="submit" class="fm-register-form__button">
-        Finalizar Cadastro
+      <button
+        type="submit"
+        class="fm-register-form__button"
+        [disabled]="formCadastro.invalid || isSubmitting"
+      >
+        {{ isSubmitting ? 'Salvando...' : 'Finalizar Cadastro' }}
       </button>
-
     </form>
   </div>
 </div>
