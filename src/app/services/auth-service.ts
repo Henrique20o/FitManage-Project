@@ -43,7 +43,7 @@ export class AuthService {
       })
     );
   }
-
+  
 
   private setSession(sessionData: any): void {
     localStorage.setItem(USER_KEY, JSON.stringify(sessionData));
