@@ -7,7 +7,7 @@ import { PlanoApi } from '../models/planos-api';
   providedIn: 'root',
 })
 export class PlanosService {
-    private apiUrl = 'http://localhost:3000/planos';
+  private apiUrl = 'http://localhost:3000/planos';
 
   constructor(private http: HttpClient) {}
 
@@ -18,5 +18,4 @@ export class PlanosService {
   obterPlanos(): Observable<PlanoApi[]> {
     return this.http.get<PlanoApi[]>(this.apiUrl);
   }
-  
 }

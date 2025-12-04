@@ -11,7 +11,6 @@ export interface UserCredentials {
   senha: string;
 }
 
-
 const API_URL = 'http://localhost:3000/academia'; 
 const USER_KEY = 'currentUser'; 
 

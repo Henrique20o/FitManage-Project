@@ -20,34 +20,74 @@
   ],
   "planos": [
     {
-      "id": "1",
-      "titulo": "Musculação 6x",
-      "descricao": "Musculação 6 vezes por semana.",
-      "valor": "R$129,90"
+      "id": "3bb0",
+      "titulo": "Musculação 2x",
+      "descricao": "Musculação duas vezes na semana!",
+      "valor": null,
+      "idAcademia": "7445"
     },
     {
-      "id": "2",
-      "titulo": "Natação 3x",
-      "descricao": "Natação 3 vezes por semana!",
-      "valor": "R$300,00"
+      "id": "b5e9",
+      "titulo": "",
+      "descricao": "",
+      "valor": 0,
+      "idAcademia": "7445"
     },
     {
-      "id": "3",
-      "titulo": "CrossFit 2x",
-      "descricao": "Crossfit 2 vezes por semana.",
-      "valor": "R$109,90"
+      "id": "df08",
+      "titulo": "Musculação 7x",
+      "descricao": "descrição",
+      "valor": null,
+      "idAcademia": "7445"
     },
     {
-      "id": "4",
-      "titulo": "Musculação 3x",
-      "descricao": "Musculação 3 vezes por semana.",
-      "valor": "R$79,90"
+      "id": "2a51",
+      "titulo": "Musculação 2x",
+      "descricao": "",
+      "valor": 79.9,
+      "idAcademia": "7445"
     },
     {
-      "id": "5655",
-      "titulo": "Dança polo",
-      "descricao": "Teste",
-      "valor": "10"
+      "id": "6ad0",
+      "titulo": "Musculação 7x",
+      "descricao": "wdwd",
+      "valor": null,
+      "idAcademia": 7445
+    },
+    {
+      "id": "9929",
+      "titulo": "Musculação 7x",
+      "descricao": "muescula~]ao ",
+      "valor": 59.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "9929",
+      "titulo": "Musculação 30x",
+      "descricao": "muescula~]ao ",
+      "valor": 59.9,
+      "idAcademia": 200
+    },
+    {
+      "id": "d105",
+      "titulo": "Musculação 2x",
+      "descricao": "wwww",
+      "valor": null,
+      "idAcademia": 7445
+    },
+    {
+      "id": "14fd",
+      "titulo": "",
+      "descricao": "",
+      "valor": 0,
+      "idAcademia": 7445
+    },
+    {
+      "id": "bff5",
+      "titulo": "Musculação 7x",
+      "descricao": "gggggg",
+      "valor": 26.9,
+      "idAcademia": 7445
     }
   ],
   "alunos": [

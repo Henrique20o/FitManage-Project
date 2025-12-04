@@ -1,6 +1,7 @@
 export interface PlanoApi {
-    id?: number;
-    titulo: string;
-    descricao: string;
-    valor: number;
+  id?: number;
+  titulo: string;
+  descricao: string;
+  valor: number | null;
+  idAcademia: number;
 }

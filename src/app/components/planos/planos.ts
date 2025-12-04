@@ -1,50 +1,92 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
 import { CardPlano } from './card-plano/card-plano';
-import { NgFor } from '@angular/common';
+import { NgFor, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-const API_PLANOS = 'http://localhost:3000/planos';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../services/auth-service';      // 👈 ajusta o caminho se no seu projeto for diferente
+import { PlanosService } from '../../services/planos-service';  // 👈 idem
+import { PlanoApi } from '../../models/planos-api';             // 👈 idem
 
 @Component({
   selector: 'app-planos',
+  standalone: true,
   imports: [Sidebar, CardPlano, NgFor, FormsModule, CommonModule, HttpClientModule],
   templateUrl: './planos.html',
   styleUrl: './planos.css',
 })
-export class Planos {
-  private http = inject(HttpClient);
 
+export class Planos implements OnInit {
+  // lista usada no *ngFor do HTML
   planos: Array<{ titulo: string; descricao: string; valor: string }> = [];
 
-  // controla se o modal de "Criar novo plano" está aberto
+  // mesmo nome usado no *ngIf do modal
   modalPlanoAberto = false;
+  RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
 
-  // objeto que recebe os dados do formulário
+
+  // mesmo objeto usado no [(ngModel)] do formulário
   novoPlano = {
     titulo: '',
     descricao: '',
-    valor: ''
+    valor: '',
   };
 
-  constructor() {
-    this.loadPlanos();
+  constructor(
+    private authService: AuthService,
+    private planosService: PlanosService
+  ) {}
+
+  // =============================
+  // ciclo de vida
+  // =============================
+  ngOnInit(): void {
+    this.carregarPlanos();
   }
 
-  loadPlanos(): void {
-    this.http.get<any[]>(API_PLANOS).subscribe({
-      next: (data) => {
-        this.planos = data || [];
+  // =============================
+  // carrega planos do usuário logado
+  // =============================
+  private carregarPlanos(): void {
+    const usuarioLogado = this.authService.getCurrentUser();
+
+    if (!usuarioLogado) {
+      console.warn('Nenhum usuário logado encontrado (localStorage vazio).');
+      this.planos = [];
+      return;
+    }
+
+    const idAcademia = Number(usuarioLogado.id);
+    console.log('Usuário logado:', usuarioLogado);
+
+    this.planosService.obterPlanos().subscribe({
+      next: (data: PlanoApi[]) => {
+        console.log('Planos retornados da API (brutos):', data);
+
+        // 🔎 filtra só os planos dessa academia
+        const filtrados = (data || []).filter((plano) => {
+          return Number(plano.idAcademia) === idAcademia;
+        });
+
+        console.log('Planos filtrados por idAcademia =', idAcademia, filtrados);
+
+        // 👇 AQUI tratamos valor = null/undefined pra não dar erro no toString
+        this.planos = filtrados.map((plano) => ({
+          titulo: plano.titulo ?? '',
+          descricao: plano.descricao ?? '',
+          valor: plano.valor?.toString() ?? '', // se for null/undefined vira string vazia
+        }));
       },
       error: (err) => {
         console.error('Erro ao carregar planos:', err);
         this.planos = [];
-      }
+      },
     });
   }
 
+  // =============================
+  // ações do modal
+  // =============================
   abrirModalPlano() {
     this.modalPlanoAberto = true;
   }
@@ -55,23 +97,35 @@ export class Planos {
   }
 
   salvarPlano() {
-    const payload = {
+    const usuarioLogado = this.authService.getCurrentUser();
+
+    if (!usuarioLogado) {
+      console.error('Tentativa de salvar plano sem usuário logado.');
+      return;
+    }
+
+    const idAcademia = Number(usuarioLogado.id);
+
+    const payload: PlanoApi = {
       titulo: this.novoPlano.titulo,
       descricao: this.novoPlano.descricao,
-      valor: this.novoPlano.valor
+      // se o campo ficar vazio, manda 0 pra não ficar null no banco
+      valor: this.novoPlano.valor ? Number(this.novoPlano.valor) : 0,
+      idAcademia: idAcademia,
     };
 
-    // Persiste o novo plano na API e recarrega a lista
-    this.http.post(API_PLANOS, payload).subscribe({
+    console.log('Salvando plano com payload:', payload);
+
+    this.planosService.criarPlano(payload).subscribe({
       next: () => {
-        this.loadPlanos();
+        // depois de salvar, recarrega a lista já filtrando pelo usuário
+        this.carregarPlanos();
         this.fecharModalPlano();
       },
       error: (err) => {
         console.error('Erro ao salvar plano:', err);
-        // Fecha o modal mesmo em caso de erro localmente
         this.fecharModalPlano();
-      }
+      },
     });
   }
 }
