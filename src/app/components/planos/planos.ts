@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
 import { CardPlano } from './card-plano/card-plano';
 import { NgFor, CommonModule } from '@angular/common';
@@ -32,7 +32,8 @@ export class Planos implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private planosService: PlanosService
+    private planosService: PlanosService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   // =============================
@@ -69,11 +70,16 @@ export class Planos implements OnInit {
         console.log('Planos filtrados por idAcademia =', idAcademia, filtrados);
 
         // 👇 AQUI tratamos valor = null/undefined pra não dar erro no toString
-        this.planos = filtrados.map((plano) => ({
-          titulo: plano.titulo ?? '',
-          descricao: plano.descricao ?? '',
-          valor: plano.valor?.toString() ?? '', // se for null/undefined vira string vazia
-        }));
+        this.planos = filtrados.map((plano) => {
+          const valorTratado = plano.valor ? `R$${plano.valor.toFixed(2).toString().replaceAll('.', ',')}` : 'Grátis'; // se for null/undefined vira 0
+          return {
+            titulo: plano.titulo ?? '',
+            descricao: plano.descricao ?? '',
+            valor: valorTratado.toString(), // usa valorNovo convertido para string
+          };
+        });
+
+        this.cdr.markForCheck(); // Força a detecção de mudanças
       },
       error: (err) => {
         console.error('Erro ao carregar planos:', err);
