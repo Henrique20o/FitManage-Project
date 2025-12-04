@@ -22,8 +22,6 @@ export class Planos implements OnInit {
 
   // mesmo nome usado no *ngIf do modal
   modalPlanoAberto = false;
-  RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
-
 
   // mesmo objeto usado no [(ngModel)] do formulário
   novoPlano = {
