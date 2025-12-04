@@ -20,25 +20,25 @@
   ],
   "planos": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Musculação 6x",
       "descricao": "Musculação 6 vezes por semana.",
       "valor": "R$129,90"
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "Natação 3x",
       "descricao": "Natação 3 vezes por semana!",
       "valor": "R$300,00"
     },
     {
-      "id": 3,
+      "id": "3",
       "titulo": "CrossFit 2x",
       "descricao": "Crossfit 2 vezes por semana.",
       "valor": "R$109,90"
     },
     {
-      "id": 4,
+      "id": "4",
       "titulo": "Musculação 3x",
       "descricao": "Musculação 3 vezes por semana.",
       "valor": "R$79,90"
@@ -48,12 +48,6 @@
       "titulo": "Dança polo",
       "descricao": "Teste",
       "valor": "10"
-    },
-    {
-      "id": "c9ee",
-      "titulo": "",
-      "descricao": "",
-      "valor": ""
     }
   ],
   "alunos": [
@@ -63,7 +57,8 @@
       "cpf": "13478649112",
       "endereço": "Rua teste, 61, Teste",
       "telefone": "31989763456",
-      "plano": ""
+      "plano": "",
+      "id": "8ac5"
     }
   ]
 }
