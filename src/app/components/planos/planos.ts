@@ -75,7 +75,7 @@ export class Planos implements OnInit {
           return {
             titulo: plano.titulo ?? '',
             descricao: plano.descricao ?? '',
-            valor: valorTratado.toString(), // usa valorNovo convertido para string
+            valor: valorTratado, // usa valorNovo convertido para string
           };
         });
 
