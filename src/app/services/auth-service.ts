@@ -63,11 +63,9 @@ export class AuthService {
     );
   }
 
-
   private setSession(sessionData: any): void {
     localStorage.setItem(USER_KEY, JSON.stringify(sessionData));
   }
-
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem(USER_KEY);
