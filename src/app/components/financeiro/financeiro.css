@@ -1,4 +1,5 @@
-/* layout geral no padrão do dashboard */
+/* ===== LAYOUT GERAL (dashboard) ===== */
+
 .fm-dashboard {
   position: fixed;
   inset: 0;
@@ -17,16 +18,15 @@
   overflow-y: auto;
 }
 
-/* topo: botão + busca */
-.fm-finance__top {
+/* topo: apenas o botão "+ Criar um plano" */
+.fm-plans__top {
   display: flex;
   align-items: center;
-  gap: 32px;
   margin-bottom: 40px;
 }
 
-/* botão verde "+ Registrar um pagamento" */
-.fm-finance__new-btn {
+/* botão verde */
+.fm-plans__new-btn {
   background-color: #18cb96;
   color: #131632;
   border: none;
@@ -40,53 +40,14 @@
     background-color 0.15s ease;
 }
 
-.fm-finance__new-btn:hover {
+.fm-plans__new-btn:hover {
   background-color: #16b488;
   transform: translateY(-1px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
 }
 
-/* caixa de busca */
-.fm-finance__search {
-  flex: 1;
-  max-width: 550px;
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 9999px;
-  padding-left: 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border: 2px solid rgba(0, 0, 0, 0.05);
-}
-
-.fm-finance__search input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: transparent;
-}
-
-.fm-finance__search-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
-  border: none;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.fm-finance__search-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
-/* grid 2x2 de pagamentos */
-.fm-finance__grid {
+/* grid 2x2 dos planos */
+.fm-plans__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px 32px;
@@ -98,21 +59,165 @@
     padding: 24px 16px;
   }
 
-  .fm-finance__top {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .fm-finance__new-btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .fm-finance__search {
-    max-width: 100%;
-  }
-
-  .fm-finance__grid {
+  .fm-plans__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== MODAL: CRIAR NOVO PLANO ===== */
+
+.fm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Card branco com texto escuro */
+.fm-modal {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 40px 60px 32px;
+  max-width: 900px;
+  width: 100%;
+  color: #131632;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* botão X no canto superior direito */
+.fm-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #131632;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* título centralizado */
+.fm-register-section-title {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 22px;
+  font-weight: 700;
+  color: #131632;
+}
+
+/* ===== PADRÃO DE INPUTS ARREDONDADOS VERDES ===== */
+
+.fm-register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 32px;
+  margin-bottom: 28px;
+}
+
+/* para linhas que precisam de menos espaço embaixo */
+.fm-register-form__grid--small {
+  margin-bottom: 24px;
+}
+
+/* faz o campo ocupar a linha toda */
+.fm-register-form__group--full {
+  grid-column: 1 / -1;
+}
+
+/* Grupo de label + input */
+.fm-register-form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.fm-register-form__group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #131632;
+}
+
+/* Inputs, selects e textarea verdes arredondados */
+.fm-register-form__group input,
+.fm-register-form__group select,
+.fm-register-form__group textarea {
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: rgba(24, 203, 150, 0.6);
+  color: #0b1024;
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* textarea um pouco menos “pílula” */
+.fm-register-form__group textarea {
+  border-radius: 16px;
+  resize: none;
+}
+
+.fm-register-form__group input:focus,
+.fm-register-form__group select:focus,
+.fm-register-form__group textarea:focus {
+  background-color: rgba(24, 203, 150, 0.95);
+  box-shadow: 0 0 0 2px rgba(19, 22, 50, 0.15);
+  transform: translateY(-1px);
+}
+
+.fm-register-form__group select {
+  cursor: pointer;
+}
+
+/* Botão principal: SALVAR */
+.fm-register-form__button {
+  display: block;
+  margin: 8px auto 0;
+  padding: 12px 40px;
+  background-color: #18cb96;
+  border-radius: 9999px;
+  border: none;
+  color: #131632;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.fm-register-form__button:hover {
+  background-color: #16b488;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+.fm-register-form__button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* responsivo do modal */
+@media (max-width: 900px) {
+  .fm-modal {
+    padding: 32px 20px 24px;
+    margin: 0 12px;
+  }
+
+  .fm-register-form__grid,
+  .fm-register-form__grid--small {
+    grid-template-columns: 1fr;
+  }
+
+  .fm-register-form__button {
+    width: 100%;
   }
 }

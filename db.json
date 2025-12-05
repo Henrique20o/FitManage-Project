@@ -6,7 +6,7 @@
       "cpf": "13478649112",
       "telefone": "31999978345",
       "email": "joao.marcos@email.com",
-      "nomeAcademia": "Fit+",
+      "nomeAcademia": "FitSaude+",
       "cnpj": "34567765000134",
       "endereco": "Rua Oliveira",
       "bairro": "Cruzeiro",
@@ -20,29 +20,394 @@
   ],
   "planos": [
     {
-      "id": "9929",
-      "titulo": "Musculação 30x",
-      "descricao": "muescula~]ao ",
-      "valor": 59.9,
-      "idAcademia": 200
-    },
-    {
       "id": "9e4b",
       "titulo": "Musculação 7x",
-      "descricao": "Musculação 7 dias por semana ",
-      "valor": 29.9,
+      "descricao": "Musculação 7 dias por semana",
+      "valor": 139.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "a1c2",
+      "titulo": "Musculação 3x",
+      "descricao": "Acesso à musculação 3 vezes por semana",
+      "valor": 129.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "b3d4",
+      "titulo": "Musculação 5x",
+      "descricao": "Musculação 5 dias por semana",
+      "valor": 149.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "c5e6",
+      "titulo": "Musculação + Aeróbico 5x",
+      "descricao": "Musculação e área de aeróbico 5 dias por semana",
+      "valor": 159.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "d7f8",
+      "titulo": "Plano Mensal Completo",
+      "descricao": "Acesso livre à musculação, aeróbico e alongamento todos os dias",
+      "valor": 169.9,
+      "idAcademia": 7445
+    },
+    {
+      "id": "e9g0",
+      "titulo": "Plano Anual Promocional",
+      "descricao": "Musculação 7 dias por semana com fidelidade de 12 meses",
+      "valor": 179.9,
       "idAcademia": 7445
     }
   ],
   "alunos": [
     {
-      "id": "8421",
-      "nome": "Lucas Ferreira Souza",
-      "telefone": "31997190963",
-      "cpf": "13401704699",
-      "endereco": "RUA F",
-      "idPlano": "86cf",
-      "idAcademia": 7445
-    }
-  ]
+    "id": "e412",
+    "nome": "Maria Ferreira Dias",
+    "telefone": "31963526352",
+    "cpf": "12345678998",
+    "endereco": "Rua Goabeira, número 51, casa A, Confidência",
+    "idPlano": "e9g0",
+    "idAcademia": 7445
+  },
+  {
+    "id": "a210",
+    "nome": "João Pedro Martins",
+    "telefone": "31987541236",
+    "cpf": "23456789011",
+    "endereco": "Rua das Acácias, 120, ap 201, Centro",
+    "idPlano": "9e4b",
+    "idAcademia": 7445
+  },
+  {
+    "id": "b357",
+    "nome": "Ana Luiza Costa",
+    "telefone": "31998456321",
+    "cpf": "34567890122",
+    "endereco": "Avenida Brasil, 980, bloco B, Jardim das Flores",
+    "idPlano": "a1c2",
+    "idAcademia": 7445
+  },
+  {
+    "id": "c981",
+    "nome": "Carlos Henrique Souza",
+    "telefone": "31996587412",
+    "cpf": "45678901233",
+    "endereco": "Rua das Palmeiras, 45, casa 2, Vila Nova",
+    "idPlano": "b3d4",
+    "idAcademia": 7445
+  },
+  {
+    "id": "d624",
+    "nome": "Fernanda Almeida",
+    "telefone": "31992346789",
+    "cpf": "56789012344",
+    "endereco": "Rua Ouro Preto, 310, ap 402, Funcionários",
+    "idPlano": "c5e6",
+    "idAcademia": 7445
+  },
+  {
+    "id": "f773",
+    "nome": "Rafael Gomes",
+    "telefone": "31993457821",
+    "cpf": "67890123455",
+    "endereco": "Avenida Amazonas, 1500, loja 03, Centro",
+    "idPlano": "d7f8",
+    "idAcademia": 7445
+  },
+    {
+    "id": "g101",
+    "nome": "Lucas Andrade Silva",
+    "telefone": "31998123456",
+    "cpf": "78901234566",
+    "endereco": "Rua das Mangueiras, 88, casa 1, Bairro Verde",
+    "idPlano": "9e4b",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g102",
+    "nome": "Bruna Carvalho Rocha",
+    "telefone": "31997234561",
+    "cpf": "89012345677",
+    "endereco": "Rua São João, 210, ap 302, Centro",
+    "idPlano": "a1c2",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g103",
+    "nome": "Paulo Ricardo Menezes",
+    "telefone": "31996345127",
+    "cpf": "90123456788",
+    "endereco": "Avenida Dom Pedro, 500, bloco A, Nova Cidade",
+    "idPlano": "b3d4",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g104",
+    "nome": "Juliana Moreira Santos",
+    "telefone": "31995476281",
+    "cpf": "01234567899",
+    "endereco": "Rua Diamantina, 35, casa 3, Bairro Industrial",
+    "idPlano": "c5e6",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g105",
+    "nome": "Thiago Barbosa Lopes",
+    "telefone": "31994567832",
+    "cpf": "11223344556",
+    "endereco": "Rua da Liberdade, 72, ap 104, Centro",
+    "idPlano": "d7f8",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g106",
+    "nome": "Patrícia Gomes Nogueira",
+    "telefone": "31993659874",
+    "cpf": "22334455667",
+    "endereco": "Rua Rio de Janeiro, 900, ap 901, Funcionários",
+    "idPlano": "e9g0",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g107",
+    "nome": "Rogério de Souza Lima",
+    "telefone": "31992748163",
+    "cpf": "33445566778",
+    "endereco": "Rua das Hortênsias, 12, casa 2, Jardim Bela Vista",
+    "idPlano": "9e4b",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g108",
+    "nome": "Camila Teixeira Faria",
+    "telefone": "31991837465",
+    "cpf": "44556677889",
+    "endereco": "Avenida Central, 1320, torre 1, Sala 104",
+    "idPlano": "a1c2",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g109",
+    "nome": "Diego Martins Pereira",
+    "telefone": "31990928374",
+    "cpf": "55667788990",
+    "endereco": "Rua Santa Clara, 67, casa 4, Vila Alegre",
+    "idPlano": "b3d4",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g110",
+    "nome": "Larissa Couto Fonseca",
+    "telefone": "31999817263",
+    "cpf": "66778899001",
+    "endereco": "Rua Flor de Lis, 145, ap 203, Jardim Europa",
+    "idPlano": "c5e6",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g111",
+    "nome": "Bruno Henrique Paiva",
+    "telefone": "31998765432",
+    "cpf": "77889900112",
+    "endereco": "Rua dos Ipês, 301, casa 6, Bairro das Árvores",
+    "idPlano": "d7f8",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g112",
+    "nome": "Mariana Ribeiro Costa",
+    "telefone": "31997654321",
+    "cpf": "88990011223",
+    "endereco": "Avenida das Nações, 2500, bloco C, ap 1203",
+    "idPlano": "e9g0",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g113",
+    "nome": "Felipe Monteiro Alves",
+    "telefone": "31996543218",
+    "cpf": "99001122334",
+    "endereco": "Rua Lagoa Seca, 55, casa B, Recanto Verde",
+    "idPlano": "9e4b",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g114",
+    "nome": "Isabela Freitas Diniz",
+    "telefone": "31995432187",
+    "cpf": "10111213141",
+    "endereco": "Rua da Serra, 402, ap 502, Serra Alta",
+    "idPlano": "a1c2",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g115",
+    "nome": "Gustavo Araújo Pires",
+    "telefone": "31994321098",
+    "cpf": "12131415161",
+    "endereco": "Rua Azul Marinho, 18, casa 1, Bairro Oceano",
+    "idPlano": "b3d4",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g116",
+    "nome": "Carolina Mendes Prado",
+    "telefone": "31993219876",
+    "cpf": "13141516171",
+    "endereco": "Avenida Atlântica, 780, ap 1002, Orla",
+    "idPlano": "c5e6",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g117",
+    "nome": "Renato Souza Guimarães",
+    "telefone": "31992108765",
+    "cpf": "14151617181",
+    "endereco": "Rua da Matriz, 301, casa 5, Bairro Histórico",
+    "idPlano": "d7f8",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g118",
+    "nome": "Aline Pereira Cardoso",
+    "telefone": "31991097654",
+    "cpf": "15161718191",
+    "endereco": "Rua Bela Vista, 90, ap 301, Bela Vista",
+    "idPlano": "e9g0",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g119",
+    "nome": "Eduardo Lima Tavares",
+    "telefone": "31990986543",
+    "cpf": "16171819201",
+    "endereco": "Rua dos Cataguases, 12, casa 3, Vila Mineira",
+    "idPlano": "9e4b",
+    "idAcademia": 7445
+  },
+  {
+    "id": "g120",
+    "nome": "Sabrina Oliveira Reis",
+    "telefone": "31999885642",
+    "cpf": "17181920211",
+    "endereco": "Avenida dos Andradas, 1450, ap 804, Centro",
+    "idPlano": "a1c2",
+    "idAcademia": 7445
+  }
+
+  ],
+  "pagamentos": [
+  {
+    "id": "p001",
+    "idAluno": "e412",
+    "idAcademia": 7445,
+    "dataPagamento": "05/01/2025",
+    "mesReferencia": "01",
+    "anoReferencia": 2025,
+    "valor": 179.9
+  },
+  {
+    "id": "p002",
+    "idAluno": "a210",
+    "idAcademia": 7445,
+    "dataPagamento": "05/02/2025",
+    "mesReferencia": "02",
+    "anoReferencia": 2025,
+    "valor": 139.9
+  },
+  {
+    "id": "p003",
+    "idAluno": "b357",
+    "idAcademia": 7445,
+    "dataPagamento": "06/03/2025",
+    "mesReferencia": "03",
+    "anoReferencia": 2025,
+    "valor": 129.9
+  },
+  {
+    "id": "p004",
+    "idAluno": "c981",
+    "idAcademia": 7445,
+    "dataPagamento": "07/04/2025",
+    "mesReferencia": "04",
+    "anoReferencia": 2025,
+    "valor": 149.9
+  },
+  {
+    "id": "p005",
+    "idAluno": "d624",
+    "idAcademia": 7445,
+    "dataPagamento": "08/05/2025",
+    "mesReferencia": "05",
+    "anoReferencia": 2025,
+    "valor": 159.9
+  },
+  {
+    "id": "p006",
+    "idAluno": "f773",
+    "idAcademia": 7445,
+    "dataPagamento": "09/06/2025",
+    "mesReferencia": "06",
+    "anoReferencia": 2025,
+    "valor": 169.9
+  },
+  {
+    "id": "p007",
+    "idAluno": "g101",
+    "idAcademia": 7445,
+    "dataPagamento": "10/07/2025",
+    "mesReferencia": "07",
+    "anoReferencia": 2025,
+    "valor": 139.9
+  },
+  {
+    "id": "p008",
+    "idAluno": "g102",
+    "idAcademia": 7445,
+    "dataPagamento": "11/08/2025",
+    "mesReferencia": "08",
+    "anoReferencia": 2025,
+    "valor": 129.9
+  },
+  {
+    "id": "p009",
+    "idAluno": "g103",
+    "idAcademia": 7445,
+    "dataPagamento": "12/09/2025",
+    "mesReferencia": "09",
+    "anoReferencia": 2025,
+    "valor": 149.9
+  },
+  {
+    "id": "p010",
+    "idAluno": "g104",
+    "idAcademia": 7445,
+    "dataPagamento": "13/10/2025",
+    "mesReferencia": "10",
+    "anoReferencia": 2025,
+    "valor": 159.9
+  },
+  {
+    "id": "p011",
+    "idAluno": "g105",
+    "idAcademia": 7445,
+    "dataPagamento": "14/11/2025",
+    "mesReferencia": "11",
+    "anoReferencia": 2025,
+    "valor": 169.9
+  },
+  {
+    "id": "p012",
+    "idAluno": "g106",
+    "idAcademia": 7445,
+    "dataPagamento": "15/12/2025",
+    "mesReferencia": "12",
+    "anoReferencia": 2025,
+    "valor": 179.9
+  }
+]
+
 }

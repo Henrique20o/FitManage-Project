@@ -17,10 +17,18 @@
   </div>
 
   <div class="fm-payment-card__actions">
-    <button type="button" class="fm-payment-card__action-btn">
+    <button
+      type="button"
+      class="fm-payment-card__action-btn"
+      (click)="onClickEditar()"
+    >
       <img src="card_aluno_editar.png" alt="Editar" />
     </button>
-    <button type="button" class="fm-payment-card__action-btn">
+    <button
+      type="button"
+      class="fm-payment-card__action-btn"
+      (click)="onClickExcluir()"
+    >
       <img src="card_aluno_lixeira.png" alt="Excluir" />
     </button>
   </div>

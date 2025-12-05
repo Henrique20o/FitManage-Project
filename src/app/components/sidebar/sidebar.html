@@ -73,11 +73,18 @@
     </a>
   </nav>
 
-  <!-- RODAPÉ – É AQUI QUE FICA O NOME + ÍCONE -->
+  <!-- RODAPÉ – nome da academia + botão sair -->
   <div class="fm-sidebar__footer">
-    <span class="fm-sidebar__academy-name">Nome Academia</span>
+    <span class="fm-sidebar__academy-name">
+      {{ 'Academia  ' + nomeAcademia }}
+    </span>
 
-    <button type="button" class="fm-sidebar__logout" aria-label="Sair" (click)="logout()">
+    <button
+      type="button"
+      class="fm-sidebar__logout"
+      aria-label="Sair"
+      (click)="logout()"
+    >
       <img
         src="sidebar_sair.png"
         alt="Sair"

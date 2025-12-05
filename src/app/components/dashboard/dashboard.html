@@ -12,37 +12,33 @@
       <!-- Faturamento Geral -->
       <section class="fm-dashboard-card">
         <h3>Faturamento Geral:</h3>
-        <p class="fm-dashboard-card__value">R$30.000</p>
+        <p class="fm-dashboard-card__value">
+          {{ faturamentoGeral | currency: 'BRL':'symbol':'1.2-2'}}
+        </p>
       </section>
 
       <!-- Ticket Médio -->
       <section class="fm-dashboard-card">
         <h3>Ticket médio:</h3>
-        <p class="fm-dashboard-card__value">R$129,90</p>
+        <p class="fm-dashboard-card__value">
+          {{ ticketMedio | currency: 'BRL':'symbol':'1.2-2'}}
+        </p>
       </section>
 
       <!-- Nº Alunos Matriculados -->
       <section class="fm-dashboard-card">
         <h3>Número de alunos matriculados:</h3>
-        <p class="fm-dashboard-card__value">270 alunos</p>
-      </section>
-
-      <!-- Alunos Ativos -->
-      <section class="fm-dashboard-card">
-        <h3>Alunos ativos:</h3>
-        <p class="fm-dashboard-card__value">200 alunos</p>
-      </section>
-
-      <!-- Plano mais caro -->
-      <section class="fm-dashboard-card">
-        <h3>Plano mais caro:</h3>
-        <p class="fm-dashboard-card__value">Musculação 6x</p>
+        <p class="fm-dashboard-card__value">
+          {{ numeroAlunos }} aluno{{ numeroAlunos === 1 ? '' : 's' }}
+        </p>
       </section>
 
       <!-- Plano mais vendido -->
       <section class="fm-dashboard-card">
         <h3>Plano mais vendido :</h3>
-        <p class="fm-dashboard-card__value">Musculação 5x</p>
+        <p class="fm-dashboard-card__value">
+          {{ planoMaisVendido }}
+        </p>
       </section>
     </div>
   </main>

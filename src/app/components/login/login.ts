@@ -34,7 +34,6 @@ export class Login {
     this.authService.login(this.credentials).subscribe({
       next: (success) => {
         if (success) {
-          alert(`Login bem-sucedido! Bem-vindo(a), ${this.authService.getCurrentUser()?.nome}!`);
           this.router.navigate(['/dashboard']);
         } else {
           alert('Credenciais inválidas. Tente novamente.');

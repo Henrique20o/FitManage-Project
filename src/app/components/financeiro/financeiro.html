@@ -1,39 +1,181 @@
 <div class="fm-dashboard">
-  <!-- sidebar reaproveitada -->
+  <!-- sidebar -->
   <app-sidebar></app-sidebar>
 
   <main class="fm-dashboard__content">
-    <!-- Topo: botão + busca -->
-    <section class="fm-finance__top">
-      <button type="button" class="fm-finance__new-btn">
+    <!-- botão "+ Registrar um pagamento" -->
+    <section class="fm-plans__top">
+      <button
+        type="button"
+        class="fm-plans__new-btn"
+        (click)="abrirModalPagamento()"
+      >
         + Registrar um pagamento
       </button>
-
-      <div class="fm-finance__search">
-        <input
-          type="text"
-          placeholder="Consultar um pagamento ..."
-        />
-        <button type="button" class="fm-finance__search-btn">
-          <img
-            src="alunos_lupa.png"
-            alt="Buscar"
-            class="fm-finance__search-icon"
-          />
-        </button>
-      </div>
     </section>
 
-    <!-- Grid de cards de pagamentos -->
-    <section class="fm-finance__grid">
+    <!-- grid de cards de pagamentos (usa mesmas classes do grid de planos) -->
+    <section class="fm-plans__grid">
       <app-card-financeiro
-        *ngFor="let pagamentos of pagamentos"
-        [aluno]="pagamentos.aluno"
-        [dataPagamento]="pagamentos.dataPagamento"
-        [valor]="pagamentos.valor"
-        [mesReferencia]="pagamentos.mesReferencia"
-        [anoReferencia]="pagamentos.anoReferencia"
+        *ngFor="let pagamento of pagamentos"
+        [aluno]="pagamento.aluno"
+        [dataPagamento]="pagamento.dataPagamento"
+        [valor]="pagamento.valor"
+        [mesReferencia]="pagamento.mesReferencia"
+        [anoReferencia]="pagamento.anoReferencia"
+        (editarPagamento)="abrirModalEditar(pagamento)"
+        (excluirPagamento)="solicitarExclusao(pagamento)"
       ></app-card-financeiro>
     </section>
   </main>
+
+  <!-- MODAL: Registrar / Editar pagamento (mesmo layout do modal de plano) -->
+  <div class="fm-modal-backdrop" *ngIf="modalPagamentoAberto">
+    <div class="fm-modal">
+      <button
+        type="button"
+        class="fm-modal__close"
+        (click)="fecharModalPagamento()"
+      >
+        ×
+      </button>
+
+      <!-- título centralizado -->
+      <h2 class="fm-register-section-title">
+        {{ isEditMode ? 'Editar pagamento' : 'Registrar pagamento' }}
+      </h2>
+
+      <form
+        class="fm-register-form"
+        (ngSubmit)="salvarPagamento()"
+        #formPagamento="ngForm"
+      >
+        <!-- Aluno (linha inteira) -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group fm-register-form__group--full">
+            <label for="aluno">Aluno*</label>
+            <select
+              id="aluno"
+              name="aluno"
+              required
+              [(ngModel)]="novoPagamento.idAluno"
+              (ngModelChange)="onAlunoChange($event)"
+            >
+              <option [ngValue]="null">Selecione um aluno</option>
+              <option *ngFor="let a of alunosDisponiveis" [ngValue]="a.id">
+                {{ a.nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Data do pagamento + Valor (2 colunas) -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group">
+            <label for="dataPagamento">Data do pagamento</label>
+            <input
+              id="dataPagamento"
+              name="dataPagamento"
+              type="text"
+              [value]="novoPagamento.dataPagamento"
+              readonly
+            />
+          </div>
+
+          <div class="fm-register-form__group">
+            <label for="valor">Valor</label>
+            <input
+              id="valor"
+              name="valor"
+              type="text"
+              [value]="novoPagamento.valor"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Mês de referência + Ano de referência (2 colunas) -->
+        <div class="fm-register-form__grid fm-register-form__grid--small">
+          <div class="fm-register-form__group">
+            <label for="mesReferencia">Mês de referência*</label>
+            <select
+              id="mesReferencia"
+              name="mesReferencia"
+              required
+              [(ngModel)]="novoPagamento.mesReferencia"
+            >
+              <option *ngFor="let m of meses" [ngValue]="m.valor">
+                {{ m.nome }}
+              </option>
+            </select>
+          </div>
+
+          <div class="fm-register-form__group">
+            <label for="anoReferencia">Ano de referência</label>
+            <input
+              id="anoReferencia"
+              name="anoReferencia"
+              type="text"
+              [(ngModel)]="novoPagamento.anoReferencia"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Botão principal: SALVAR -->
+        <button
+          type="submit"
+          class="fm-register-form__button"
+          [disabled]="formPagamento.invalid"
+        >
+          {{ isEditMode ? 'Salvar alterações' : 'Salvar' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Confirmação de exclusão (igual plano) -->
+  <div class="fm-modal-backdrop" *ngIf="modalExcluirAberto">
+    <div class="fm-modal">
+      <button
+        type="button"
+        class="fm-modal__close"
+        (click)="fecharModalExcluir()"
+      >
+        ×
+      </button>
+
+      <h2 class="fm-register-section-title">Excluir pagamento</h2>
+
+      <div class="fm-register-form">
+        <p style="text-align: center; margin-bottom: 24px;">
+          Tem certeza que deseja excluir o pagamento do aluno
+          <strong>{{ pagamentoParaExcluir?.aluno }}</strong>?
+        </p>
+
+        <div
+          class="fm-register-form__grid fm-register-form__grid--small"
+          style="display: flex; gap: 12px; justify-content: center;"
+        >
+          <button
+            type="button"
+            class="fm-register-form__button"
+            style="background-color: #16b488; color: #333;"
+            (click)="fecharModalExcluir()"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            class="fm-register-form__button"
+            style="background-color: #e53935;"
+            (click)="confirmarExclusao()"
+          >
+            Excluir pagamento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

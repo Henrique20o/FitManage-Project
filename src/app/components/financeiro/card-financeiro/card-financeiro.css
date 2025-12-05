@@ -59,3 +59,175 @@
   height: 22px;
   object-fit: contain;
 }
+
+/* layout geral, igual outras telas do dashboard */
+.fm-dashboard {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  background-color: #ffffff;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+/* conteúdo à direita do menu com scroll */
+.fm-dashboard__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 40px;
+}
+
+/* topo: botão + busca (igual planos/alunos) */
+.fm-finance__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.fm-finance__new-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  background-color: #18cb96; /* mesma cor do "Criar plano" */
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fm-finance__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fm-finance__search input {
+  border-radius: 999px;
+  border: 1px solid #d0d5dd;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.fm-finance__search-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.fm-finance__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* =========== MODAL =========== */
+
+.fm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.fm-modal {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+}
+
+.fm-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* título do modal (mesmo de planos) */
+.fm-register-section-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* formulário do modal */
+.fm-register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* grid das linhas do formulário */
+.fm-register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* versão ocupando a linha toda */
+.fm-register-form__grid--small {
+  grid-template-columns: 1fr;
+}
+
+.fm-register-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fm-register-form__group--full {
+  grid-column: 1 / -1;
+}
+
+/* labels + inputs/ selects igual cadastro de plano */
+.fm-register-form__group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.fm-register-form__group input,
+.fm-register-form__group select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #d0d5dd;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.fm-register-form__group input:focus,
+.fm-register-form__group select:focus {
+  border-color: #18cb96;
+  box-shadow: 0 0 0 1px rgba(24, 203, 150, 0.2);
+}
+
+/* botão principal do formulário */
+.fm-register-form__button {
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background-color: #18cb96;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.fm-register-form__button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
