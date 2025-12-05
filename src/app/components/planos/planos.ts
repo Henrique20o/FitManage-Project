@@ -4,9 +4,17 @@ import { CardPlano } from './card-plano/card-plano';
 import { NgFor, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../services/auth-service';      // 👈 ajusta o caminho se no seu projeto for diferente
-import { PlanosService } from '../../services/planos-service';  // 👈 idem
-import { PlanoApi } from '../../models/planos-api';             // 👈 idem
+import { AuthService } from '../../services/auth-service';
+import { PlanosService } from '../../services/planos-service';
+import { PlanoApi } from '../../models/planos-api';
+
+type PlanoLista = {
+  id: number;
+  titulo: string;
+  descricao: string;
+  valor: string;       // texto formatado para tela (R$...)
+  valorNumero: number; // valor numérico vindo da API
+};
 
 @Component({
   selector: 'app-planos',
@@ -15,15 +23,19 @@ import { PlanoApi } from '../../models/planos-api';             // 👈 idem
   templateUrl: './planos.html',
   styleUrl: './planos.css',
 })
-
 export class Planos implements OnInit {
-  // lista usada no *ngFor do HTML
-  planos: Array<{ titulo: string; descricao: string; valor: string }> = [];
+  planos: PlanoLista[] = [];
 
-  // mesmo nome usado no *ngIf do modal
+  // modal de cadastro/edição
   modalPlanoAberto = false;
+  isEditMode = false;
+  planoEditandoId: number | null = null;
 
-  // mesmo objeto usado no [(ngModel)] do formulário
+  // modal de confirmação de exclusão
+  modalExcluirAberto = false;
+  planoParaExcluir: PlanoLista | null = null;
+
+  // objeto usado no formulário
   novoPlano = {
     titulo: '',
     descricao: '',
@@ -36,16 +48,13 @@ export class Planos implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  // =============================
-  // ciclo de vida
-  // =============================
   ngOnInit(): void {
     this.carregarPlanos();
   }
 
-  // =============================
-  // carrega planos do usuário logado
-  // =============================
+  // ==========================
+  // Carregar planos da API
+  // ==========================
   private carregarPlanos(): void {
     const usuarioLogado = this.authService.getCurrentUser();
 
@@ -56,30 +65,30 @@ export class Planos implements OnInit {
     }
 
     const idAcademia = Number(usuarioLogado.id);
-    console.log('Usuário logado:', usuarioLogado);
 
     this.planosService.obterPlanos().subscribe({
       next: (data: PlanoApi[]) => {
-        console.log('Planos retornados da API (brutos):', data);
+        const filtrados = (data || []).filter(
+          (plano) => Number(plano.idAcademia) === idAcademia
+        );
 
-        // 🔎 filtra só os planos dessa academia
-        const filtrados = (data || []).filter((plano) => {
-          return Number(plano.idAcademia) === idAcademia;
-        });
-
-        console.log('Planos filtrados por idAcademia =', idAcademia, filtrados);
-
-        // 👇 AQUI tratamos valor = null/undefined pra não dar erro no toString
         this.planos = filtrados.map((plano) => {
-          const valorTratado = plano.valor ? `R$${plano.valor.toFixed(2).toString().replaceAll('.', ',')}` : 'Grátis'; // se for null/undefined vira 0
+          const valorNumero = plano.valor ?? 0;
+          const valorFormatado =
+            valorNumero && valorNumero !== 0
+              ? `R$${valorNumero.toFixed(2).toString().replace('.', ',')}`
+              : 'Grátis';
+
           return {
+            id: plano.id ?? 0,
             titulo: plano.titulo ?? '',
             descricao: plano.descricao ?? '',
-            valor: valorTratado, // usa valorNovo convertido para string
+            valor: valorFormatado,
+            valorNumero: valorNumero,
           };
         });
 
-        this.cdr.markForCheck(); // Força a detecção de mudanças
+        this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('Erro ao carregar planos:', err);
@@ -88,18 +97,40 @@ export class Planos implements OnInit {
     });
   }
 
-  // =============================
-  // ações do modal
-  // =============================
+  // ==========================
+  // Modal: criar / editar
+  // ==========================
   abrirModalPlano() {
+    this.isEditMode = false;
+    this.planoEditandoId = null;
     this.modalPlanoAberto = true;
+    this.novoPlano = { titulo: '', descricao: '', valor: '' };
+  }
+
+  abrirModalEditar(plano: PlanoLista) {
+    this.isEditMode = true;
+    this.planoEditandoId = plano.id;
+    this.modalPlanoAberto = true;
+
+    this.novoPlano = {
+      titulo: plano.titulo,
+      descricao: plano.descricao,
+      valor: plano.valorNumero
+        ? plano.valorNumero.toString().replace('.', ',')
+        : '',
+    };
   }
 
   fecharModalPlano() {
     this.modalPlanoAberto = false;
+    this.isEditMode = false;
+    this.planoEditandoId = null;
     this.novoPlano = { titulo: '', descricao: '', valor: '' };
   }
 
+  // ==========================
+  // Salvar (criar ou editar)
+  // ==========================
   salvarPlano() {
     const usuarioLogado = this.authService.getCurrentUser();
 
@@ -109,26 +140,86 @@ export class Planos implements OnInit {
     }
 
     const idAcademia = Number(usuarioLogado.id);
+    const valorNumber = this.novoPlano.valor
+      ? Number(this.novoPlano.valor.toString().replace(',', '.'))
+      : 0;
 
-    const payload: PlanoApi = {
-      titulo: this.novoPlano.titulo,
-      descricao: this.novoPlano.descricao,
-      // se o campo ficar vazio, manda 0 pra não ficar null no banco
-      valor: this.novoPlano.valor ? Number(this.novoPlano.valor) : 0,
-      idAcademia: idAcademia,
-    };
+    if (!this.isEditMode) {
+      // CRIAR
+      const payload: PlanoApi = {
+        titulo: this.novoPlano.titulo,
+        descricao: this.novoPlano.descricao,
+        valor: valorNumber,
+        idAcademia: idAcademia,
+      };
 
-    console.log('Salvando plano com payload:', payload);
+      this.planosService.criarPlano(payload).subscribe({
+        next: () => {
+          this.carregarPlanos();
+          this.fecharModalPlano();
+        },
+        error: (err) => {
+          console.error('Erro ao salvar plano:', err);
+          this.fecharModalPlano();
+        },
+      });
+    } else {
+      // EDITAR
+      if (!this.planoEditandoId) {
+        console.error('Nenhum ID de plano para editar.');
+        return;
+      }
 
-    this.planosService.criarPlano(payload).subscribe({
+      const payload: PlanoApi = {
+        id: this.planoEditandoId,
+        titulo: this.novoPlano.titulo,
+        descricao: this.novoPlano.descricao,
+        valor: valorNumber,
+        idAcademia: idAcademia,
+      };
+
+      this.planosService.atualizarPlano(payload).subscribe({
+        next: () => {
+          this.carregarPlanos();
+          this.fecharModalPlano();
+        },
+        error: (err) => {
+          console.error('Erro ao atualizar plano:', err);
+          this.fecharModalPlano();
+        },
+      });
+    }
+  }
+
+  // ==========================
+  // Exclusão com modal
+  // ==========================
+  solicitarExclusao(plano: PlanoLista) {
+    this.planoParaExcluir = plano;
+    this.modalExcluirAberto = true;
+  }
+
+  fecharModalExcluir() {
+    this.modalExcluirAberto = false;
+    this.planoParaExcluir = null;
+  }
+
+  confirmarExclusao() {
+    if (!this.planoParaExcluir || !this.planoParaExcluir.id) {
+      console.error('Nenhum plano selecionado para exclusão.');
+      return;
+    }
+
+    const id = this.planoParaExcluir.id;
+
+    this.planosService.deletarPlano(id).subscribe({
       next: () => {
-        // depois de salvar, recarrega a lista já filtrando pelo usuário
         this.carregarPlanos();
-        this.fecharModalPlano();
+        this.fecharModalExcluir();
       },
       error: (err) => {
-        console.error('Erro ao salvar plano:', err);
-        this.fecharModalPlano();
+        console.error('Erro ao excluir plano:', err);
+        this.fecharModalExcluir();
       },
     });
   }

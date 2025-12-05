@@ -32,11 +32,15 @@
         [nome]="aluno.nome"
         [contato]="aluno.contato"
         [cpf]="aluno.cpf"
+        [endereco]="aluno.endereco"
+        [planoNome]="aluno.planoNome"
+        (editarAluno)="abrirModalEditar(aluno)"
+        (excluirAluno)="solicitarExclusao(aluno)"
       ></app-card-aluno>
     </section>
   </main>
 
-  <!-- MODAL: Matricular novo aluno (página continua branca ao fundo) -->
+  <!-- MODAL: Matricular / Editar aluno -->
   <div class="fm-modal-backdrop" *ngIf="modalMatriculaAberto">
     <div class="fm-modal">
       <button
@@ -48,7 +52,9 @@
       </button>
 
       <!-- título centralizado -->
-      <h2 class="fm-register-section-title">Matricular novo aluno</h2>
+      <h2 class="fm-register-section-title">
+        {{ isEditMode ? 'Editar aluno' : 'Matricular novo aluno' }}
+      </h2>
 
       <form
         class="fm-register-form"
@@ -109,11 +115,14 @@
             <select
               id="plano"
               name="plano"
-              [(ngModel)]="novoAluno.plano"
+              [(ngModel)]="novoAluno.idPlano"
             >
-              <option value="" disabled selected>Selecione um plano</option>
-              <option *ngFor="let p of planosDisponiveis" [value]="p">
-                {{ p }}
+              <option [ngValue]="null">Selecione um plano</option>
+              <option
+                *ngFor="let p of planosDisponiveis"
+                [ngValue]="p.id"
+              >
+                {{ p.titulo }}
               </option>
             </select>
           </div>
@@ -125,9 +134,55 @@
           class="fm-register-form__button"
           [disabled]="formMatricula.invalid"
         >
-          Salvar
+          {{ isEditMode ? 'Salvar alterações' : 'Salvar' }}
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Confirmação de exclusão -->
+  <div class="fm-modal-backdrop" *ngIf="modalExcluirAberto">
+    <div class="fm-modal">
+      <button
+        type="button"
+        class="fm-modal__close"
+        (click)="fecharModalExcluir()"
+      >
+        ×
+      </button>
+
+      <h2 class="fm-register-section-title">Excluir aluno</h2>
+
+      <div class="fm-register-form">
+        <p style="text-align: center; margin-bottom: 24px;">
+          Tem certeza que deseja excluir o aluno
+          <strong>{{ alunoParaExcluir?.nome }}</strong>?
+        </p>
+
+        <div
+          class="fm-register-form__grid fm-register-form__grid--small"
+          style="display: flex; gap: 12px; justify-content: center;"
+        >
+          <!-- Cancelar com mesma cor do botão de salvar -->
+          <button
+            type="button"
+            class="fm-register-form__button"
+            (click)="fecharModalExcluir()"
+          >
+            Cancelar
+          </button>
+
+          <!-- Excluir em vermelho -->
+          <button
+            type="button"
+            class="fm-register-form__button"
+            style="background-color: #e53935;"
+            (click)="confirmarExclusao()"
+          >
+            Excluir aluno
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

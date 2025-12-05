@@ -17,11 +17,21 @@
   </div>
 
   <div class="fm-plan-card__actions">
-    <!-- ícones de ações (editar/excluir), troque pelos seus -->
-    <button type="button" class="fm-plan-card__action-btn">
+    <!-- EDITAR -->
+    <button
+      type="button"
+      class="fm-plan-card__action-btn"
+      (click)="onClickEditar()"
+    >
       <img src="card_aluno_editar.png" alt="Editar" />
     </button>
-    <button type="button" class="fm-plan-card__action-btn">
+
+    <!-- EXCLUIR -->
+    <button
+      type="button"
+      class="fm-plan-card__action-btn"
+      (click)="onClickExcluir()"
+    >
       <img src="card_aluno_lixeira.png" alt="Excluir" />
     </button>
   </div>

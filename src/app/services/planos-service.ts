@@ -18,4 +18,17 @@ export class PlanosService {
   obterPlanos(): Observable<PlanoApi[]> {
     return this.http.get<PlanoApi[]>(this.apiUrl);
   }
+
+  atualizarPlano(plano: PlanoApi): Observable<PlanoApi> {
+    if (!plano.id) {
+      throw new Error('Plano sem ID não pode ser atualizado');
+    }
+    const url = `${this.apiUrl}/${plano.id}`;
+    return this.http.put<PlanoApi>(url, plano);
+  }
+
+  deletarPlano(id: number): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
 }
